@@ -1,17 +1,12 @@
 ```html
 <!DOCTYPE html>
 <html lang="ro">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>MovieShowRo</title>
 
     <style>
-
         * {
             box-sizing: border-box;
             margin: 0;
@@ -25,23 +20,15 @@
             color: white;
         }
 
-        /* =========================
-           MENIU
-        ========================= */
-
         .header {
             position: sticky;
             top: 0;
             z-index: 1000;
-
             display: flex;
             align-items: center;
             justify-content: space-between;
-
             padding: 15px 30px;
-
             background: #111;
-
             border-bottom: 1px solid #333;
         }
 
@@ -57,16 +44,11 @@
 
         .menu button {
             padding: 10px 15px;
-
             border: none;
             border-radius: 7px;
-
             background: transparent;
-
             color: white;
-
             font-weight: bold;
-
             cursor: pointer;
         }
 
@@ -74,15 +56,9 @@
             background: #e50914;
         }
 
-        /* =========================
-           PAGINI
-        ========================= */
-
         .sectiune {
             display: none;
-
             min-height: calc(100vh - 70px);
-
             padding: 35px 20px;
         }
 
@@ -90,24 +66,14 @@
             display: block;
         }
 
-        /* =========================
-           ACASA
-        ========================= */
-
         .hero {
             max-width: 1100px;
-
             min-height: 430px;
-
             margin: 30px auto;
-
             padding: 60px 40px;
-
             display: flex;
             align-items: center;
-
             border-radius: 20px;
-
             background:
                 linear-gradient(
                     90deg,
@@ -115,9 +81,7 @@
                     rgba(0,0,0,.5)
                 ),
                 url("images/film1.jpg");
-
             background-size: cover;
-
             background-position: center;
         }
 
@@ -127,7 +91,6 @@
 
         .hero h1 {
             font-size: 48px;
-
             margin-bottom: 20px;
         }
 
@@ -137,29 +100,19 @@
 
         .hero p {
             color: #ddd;
-
             font-size: 18px;
-
             line-height: 1.5;
-
             margin-bottom: 25px;
         }
 
         .hero-button {
             padding: 13px 22px;
-
             border: none;
-
             border-radius: 7px;
-
             background: #e50914;
-
             color: white;
-
             font-size: 16px;
-
             font-weight: bold;
-
             cursor: pointer;
         }
 
@@ -167,103 +120,63 @@
             background: #ff1f2d;
         }
 
-        /* =========================
-           TITLURI
-        ========================= */
-
         .titlu {
             max-width: 1100px;
-
             margin: 10px auto 25px;
-
             font-size: 30px;
-
             border-left: 5px solid #e50914;
-
             padding-left: 12px;
         }
 
-        /* =========================
-           GRID FILME
-        ========================= */
-
         .filme-grid {
             width: 100%;
-
             max-width: 1200px;
-
             margin: 0 auto;
-
             display: grid;
-
             grid-template-columns: repeat(4, minmax(0, 1fr));
-
             gap: 25px;
         }
 
-        /* =========================
-           CARD
-        ========================= */
-
         .card {
             width: 100%;
-
             padding: 12px;
-
             background: #181818;
-
             border-radius: 12px;
-
             text-align: center;
-
             transition: transform .2s, background .2s;
         }
 
         .card:hover {
             transform: translateY(-5px);
-
             background: #222;
         }
 
         .card img {
             width: 100%;
-
             height: 320px;
-
             object-fit: cover;
-
             border-radius: 8px;
-
             margin-bottom: 12px;
         }
 
         .card h3 {
             margin-bottom: 8px;
-
             min-height: 22px;
         }
 
         .card p {
             color: #aaa;
-
             margin-bottom: 15px;
         }
 
         .card button {
             width: 100%;
-
             padding: 12px;
-
             border: none;
-
             border-radius: 7px;
-
             background: #e50914;
-
             color: white;
-
             font-weight: bold;
-
             cursor: pointer;
         }
 
@@ -271,69 +184,44 @@
             background: #ff1f2d;
         }
 
-        /* =========================
-           DESENE
-        ========================= */
-
         .mesaj {
             max-width: 600px;
-
             margin: 60px auto;
-
             padding: 60px 20px;
-
             text-align: center;
-
             background: #181818;
-
             border-radius: 15px;
         }
 
         .mesaj-icon {
             font-size: 60px;
-
             margin-bottom: 15px;
         }
 
         .mesaj p {
             color: #aaa;
-
             margin-top: 10px;
         }
 
-        /* =========================
-           CATEGORII
-        ========================= */
-
         .categorii {
             max-width: 900px;
-
             margin: auto;
-
             display: grid;
-
             grid-template-columns:
                 repeat(
                     auto-fit,
                     minmax(180px, 1fr)
                 );
-
             gap: 15px;
         }
 
         .categorii button {
             padding: 25px;
-
             border: 1px solid #333;
-
             border-radius: 10px;
-
             background: #181818;
-
             color: white;
-
             font-size: 17px;
-
             cursor: pointer;
         }
 
@@ -341,83 +229,53 @@
             background: #e50914;
         }
 
-        /* =========================
-           PLAYER
-        ========================= */
+        /* PLAYER */
 
         #player {
             display: none;
-
             position: fixed;
-
             inset: 0;
-
             z-index: 9999;
-
             background: rgba(0,0,0,.97);
-
             align-items: center;
-
             justify-content: center;
-
             padding: 20px;
         }
 
         .player-box {
             position: relative;
-
             width: 95%;
-
             max-width: 1100px;
         }
 
-        #video {
+        #video,
+        #videoFrame {
             width: 100%;
-
-            max-height: 85vh;
-
+            height: 70vh;
             display: block;
-
             background: black;
+            border: none;
+            border-radius: 5px;
         }
-
-        /* SUBTITRARE */
 
         video::cue {
             color: white;
-
             background: rgba(0,0,0,.75);
-
             font-size: 20px;
         }
 
-        /* =========================
-           BUTON INCHIDERE
-        ========================= */
-
         .close {
             position: absolute;
-
             top: -50px;
-
             right: 0;
-
             width: 45px;
-
             height: 45px;
-
             border: none;
-
             border-radius: 50%;
-
             background: #e50914;
-
             color: white;
-
             font-size: 24px;
-
             cursor: pointer;
-
             z-index: 10000;
         }
 
@@ -425,47 +283,31 @@
             background: #ff1f2d;
         }
 
-        /* =========================
-           TABLETA
-        ========================= */
-
         @media (max-width: 900px) {
-
             .filme-grid {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
-
         }
 
-        /* =========================
-           TELEFON
-        ========================= */
-
         @media (max-width: 550px) {
-
             .header {
                 flex-direction: column;
-
                 gap: 12px;
-
                 padding: 15px;
             }
 
             .menu {
                 flex-wrap: wrap;
-
                 justify-content: center;
             }
 
             .menu button {
                 padding: 8px 10px;
-
                 font-size: 13px;
             }
 
             .hero {
                 min-height: 500px;
-
                 padding: 35px 20px;
             }
 
@@ -475,7 +317,6 @@
 
             .filme-grid {
                 grid-template-columns: 1fr;
-
                 gap: 20px;
             }
 
@@ -483,148 +324,77 @@
                 width: 98%;
             }
 
+            #videoFrame {
+                height: 60vh;
+            }
         }
-
     </style>
-
 </head>
-
 
 <body>
 
-
-    <!-- =========================
-         MENIU
-    ========================= -->
-
     <header class="header">
-
         <div class="logo">
             🎬 MovieShowRo
         </div>
 
         <nav class="menu">
-
-            <button
-                type="button"
-                onclick="showPage('acasa')">
-
+            <button type="button" onclick="showPage('acasa')">
                 🏠 Acasă
-
             </button>
 
-            <button
-                type="button"
-                onclick="showPage('filme')">
-
+            <button type="button" onclick="showPage('filme')">
                 🎬 Filme
-
             </button>
 
-            <button
-                type="button"
-                onclick="showPage('desene')">
-
+            <button type="button" onclick="showPage('desene')">
                 🧸 Desene
-
             </button>
 
-            <button
-                type="button"
-                onclick="showPage('categorii')">
-
+            <button type="button" onclick="showPage('categorii')">
                 📂 Categorii
-
             </button>
-
         </nav>
-
     </header>
 
-
-    <!-- =========================
-         ACASA
-    ========================= -->
-
-    <section
-        id="acasa"
-        class="sectiune activa">
-
+    <section id="acasa" class="sectiune activa">
         <div class="hero">
-
             <div class="hero-content">
-
                 <h1>
-
                     Bine ai venit pe
                     <span>MovieShowRo</span> 🎬
-
                 </h1>
 
                 <p>
-
                     Filme și desene într-un singur loc.
                     Alege ce vrei să vizionezi.
-
                 </p>
 
                 <button
                     type="button"
                     class="hero-button"
                     onclick="showPage('filme')">
-
                     ▶ Vezi filmele
-
                 </button>
-
             </div>
-
         </div>
-
     </section>
 
-
-    <!-- =========================
-         FILME
-    ========================= -->
-
-    <section
-        id="filme"
-        class="sectiune">
-
+    <section id="filme" class="sectiune">
         <h2 class="titlu">
-
             🎬 Filme
-
         </h2>
-
 
         <div class="filme-grid" id="filmeGrid">
-
-            <!-- FILMELE SUNT ADAUGATE AUTOMAT AICI -->
-
         </div>
-
     </section>
 
-
-    <!-- =========================
-         DESENE
-    ========================= -->
-
-    <section
-        id="desene"
-        class="sectiune">
-
+    <section id="desene" class="sectiune">
         <h2 class="titlu">
-
             🧸 Desene
-
         </h2>
 
-
         <div class="mesaj">
-
             <div class="mesaj-icon">
                 🧸
             </div>
@@ -636,85 +406,42 @@
             <p>
                 În curând vei putea adăuga desene aici.
             </p>
-
         </div>
-
     </section>
 
-
-    <!-- =========================
-         CATEGORII
-    ========================= -->
-
-    <section
-        id="categorii"
-        class="sectiune">
-
+    <section id="categorii" class="sectiune">
         <h2 class="titlu">
-
             📂 Categorii
-
         </h2>
 
-
         <div class="categorii">
-
-            <button
-                type="button"
-                onclick="showPage('filme')">
-
+            <button type="button" onclick="showPage('filme')">
                 🎬 Aventură
-
             </button>
 
-            <button
-                type="button"
-                onclick="showPage('filme')">
-
+            <button type="button" onclick="showPage('filme')">
                 😂 Comedie
-
             </button>
 
-            <button
-                type="button"
-                onclick="showPage('filme')">
-
+            <button type="button" onclick="showPage('filme')">
                 👻 Horror
-
             </button>
 
-            <button
-                type="button"
-                onclick="showPage('filme')">
-
+            <button type="button" onclick="showPage('filme')">
                 ❤️ Romantic
-
             </button>
 
-            <button
-                type="button"
-                onclick="showPage('filme')">
-
+            <button type="button" onclick="showPage('filme')">
                 💥 Acțiune
-
             </button>
 
-            <button
-                type="button"
-                onclick="showPage('filme')">
-
+            <button type="button" onclick="showPage('filme')">
                 🚀 SF
-
             </button>
-
         </div>
-
     </section>
 
-
-    <!-- =========================
-         PLAYER
-    ========================= -->
+    <!-- PLAYER -->
 
     <div id="player">
 
@@ -724,82 +451,54 @@
                 type="button"
                 class="close"
                 onclick="closeMovie()">
-
                 ✕
-
             </button>
-
 
             <video
                 id="video"
                 controls
                 playsinline>
-
                 Browserul tău nu acceptă video.
-
             </video>
+
+            <iframe
+                id="videoFrame"
+                style="display:none;"
+                frameborder="0"
+                allowfullscreen>
+            </iframe>
 
         </div>
 
     </div>
 
-
-    <!-- =========================
-         JAVASCRIPT
-    ========================= -->
-
     <script>
-
-
-        /* =========================
-           SCHIMBA PAGINA
-        ========================= */
 
         function showPage(pageId) {
 
             const pages =
-                document.querySelectorAll(
-                    ".sectiune"
-                );
-
+                document.querySelectorAll(".sectiune");
 
             pages.forEach(function(page) {
-
-                page.classList.remove(
-                    "activa"
-                );
-
+                page.classList.remove("activa");
             });
 
-
             const selectedPage =
-                document.getElementById(
-                    pageId
-                );
-
+                document.getElementById(pageId);
 
             if (selectedPage) {
-
-                selectedPage.classList.add(
-                    "activa"
-                );
-
+                selectedPage.classList.add("activa");
             }
-
 
             window.scrollTo({
                 top: 0,
                 behavior: "smooth"
             });
-
         }
 
 
         /* =========================
            FILME
-           
-           AICI POȚI SCHIMBA NUMELE
-           FILMELOR
         ========================= */
 
         const filme = [
@@ -815,7 +514,12 @@
                 id: 2,
                 nume: "Mai furios, mai iute",
                 gen: "Aventură",
-                an: "2026"
+                an: "2026",
+
+                /* LINK MIXDROP */
+
+                video:
+                    "https://mixdrop.top/e/wlnrkwvjt6we3x"
             },
 
             {
@@ -1160,7 +864,6 @@
                 gen: "Acțiune",
                 an: "2026"
             }
-
         ];
 
 
@@ -1169,18 +872,13 @@
         ========================= */
 
         const filmeGrid =
-            document.getElementById(
-                "filmeGrid"
-            );
+            document.getElementById("filmeGrid");
 
 
         filme.forEach(function(film) {
 
             const card =
-                document.createElement(
-                    "div"
-                );
-
+                document.createElement("div");
 
             card.className = "card";
 
@@ -1203,20 +901,15 @@
 
                 <button
                     type="button"
-                    onclick="openMovie(
-                        'film${film.id}.mp4',
-                        'film${film.id}.vtt'
-                    )">
+                    onclick="openMovie(${film.id})">
 
                     ▶ Vizionează
 
                 </button>
-
             `;
 
 
             filmeGrid.appendChild(card);
-
         });
 
 
@@ -1224,110 +917,115 @@
            DESCHIDE FILM
         ========================= */
 
-        function openMovie(
-            videoFile,
-            subtitleFile
-        ) {
+        function openMovie(filmId) {
 
             const player =
-                document.getElementById(
-                    "player"
-                );
-
+                document.getElementById("player");
 
             const video =
-                document.getElementById(
-                    "video"
-                );
+                document.getElementById("video");
+
+            const videoFrame =
+                document.getElementById("videoFrame");
+
+            const film =
+                filme.find(function(item) {
+                    return item.id === filmId;
+                });
 
 
-            /* Oprim filmul anterior */
+            if (!film) {
+                return;
+            }
+
+
+            /* OPRIM PLAYERUL VECHI */
 
             video.pause();
 
-
-            /* Ștergem sursele vechi */
-
             video.innerHTML = "";
 
+            videoFrame.src = "";
 
-            /* FILM */
+            video.style.display = "none";
 
-            const source =
-                document.createElement(
-                    "source"
-                );
+            videoFrame.style.display = "none";
 
 
-            source.src =
-                "videos/" + videoFile;
+            /* =========================
+               MIXDROP
+            ========================= */
+
+            if (film.video) {
+
+                videoFrame.src = film.video;
+
+                videoFrame.style.display = "block";
+
+            }
+
+            /* =========================
+               VIDEO LOCAL
+            ========================= */
+
+            else {
+
+                video.style.display = "block";
+
+                const source =
+                    document.createElement("source");
+
+                source.src =
+                    "videos/film" +
+                    film.id +
+                    ".mp4";
+
+                source.type =
+                    "video/mp4";
+
+                video.appendChild(source);
 
 
-            source.type =
-                "video/mp4";
-
-
-            video.appendChild(source);
-
-
-            /* SUBTITRARE */
-
-            if (subtitleFile) {
+                /* SUBTITRARE */
 
                 const track =
-                    document.createElement(
-                        "track"
-                    );
-
+                    document.createElement("track");
 
                 track.src =
-                    "videos/" + subtitleFile;
-
+                    "videos/film" +
+                    film.id +
+                    ".vtt";
 
                 track.kind =
                     "subtitles";
 
-
                 track.srclang =
                     "ro";
-
 
                 track.label =
                     "Română";
 
-
                 track.default =
                     true;
 
-
                 video.appendChild(track);
 
-            }
 
+                video.load();
 
-            /* DESCHIDEM PLAYERUL */
-
-            player.style.display =
-                "flex";
-
-
-            /* ÎNCĂRCĂM FILMUL */
-
-            video.load();
-
-
-            /* PORNIM FILMUL */
-
-            video.play().catch(
-                function() {
+                video.play().catch(function() {
 
                     console.log(
                         "Apasă Play pentru a porni filmul."
                     );
 
-                }
-            );
+                });
+            }
 
+
+            /* DESCHIDEM PLAYERUL */
+
+            player.style.display = "flex";
         }
 
 
@@ -1338,44 +1036,39 @@
         function closeMovie() {
 
             const player =
-                document.getElementById(
-                    "player"
-                );
-
+                document.getElementById("player");
 
             const video =
-                document.getElementById(
-                    "video"
-                );
+                document.getElementById("video");
+
+            const videoFrame =
+                document.getElementById("videoFrame");
 
 
             video.pause();
 
-
             video.currentTime = 0;
-
 
             video.innerHTML = "";
 
+            videoFrame.src = "";
 
-            player.style.display =
-                "none";
+            video.style.display = "none";
 
+            videoFrame.style.display = "none";
+
+            player.style.display = "none";
         }
 
 
-        /* =========================
-           ESC = ÎNCHIDE
-        ========================= */
+        /* ESC = ÎNCHIDE */
 
         document.addEventListener(
             "keydown",
             function(event) {
 
                 if (event.key === "Escape") {
-
                     closeMovie();
-
                 }
 
             }
@@ -1383,8 +1076,6 @@
 
     </script>
 
-
 </body>
-
 </html>
 ```
