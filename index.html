@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="ro">
 <head>
@@ -14,10 +15,10 @@
 }
 
 body {
-    min-height: 100vh;
     font-family: Arial, sans-serif;
     background: #080808;
     color: white;
+    min-height: 100vh;
 }
 
 /* =========================
@@ -53,9 +54,10 @@ body {
 }
 
 .menu button {
-    padding: 10px 15px;
     border: none;
     border-radius: 7px;
+
+    padding: 10px 15px;
 
     background: transparent;
     color: white;
@@ -84,16 +86,16 @@ body {
     display: flex;
     align-items: center;
 
+    padding: 5px 15px;
+
     background: #181818;
+
     border: 1px solid #333;
     border-radius: 12px;
-
-    padding: 5px 15px;
 }
 
 .search-box:focus-within {
     border-color: #e50914;
-    box-shadow: 0 0 15px rgba(229,9,20,.2);
 }
 
 .search-icon {
@@ -103,6 +105,7 @@ body {
 
 #searchInput {
     width: 100%;
+
     padding: 12px 5px;
 
     border: none;
@@ -125,6 +128,7 @@ body {
 .sectiune {
     display: none;
     min-height: calc(100vh - 70px);
+
     padding: 25px 20px 50px;
 }
 
@@ -133,7 +137,7 @@ body {
 }
 
 /* =========================
-   HERO
+   ACASA
 ========================= */
 
 .hero {
@@ -153,7 +157,7 @@ body {
         linear-gradient(
             90deg,
             rgba(0,0,0,.95),
-            rgba(0,0,0,.5)
+            rgba(0,0,0,.45)
         ),
         url("images/film1.jpg");
 
@@ -209,10 +213,11 @@ body {
 
     margin: 10px auto 25px;
 
+    padding-left: 12px;
+
     font-size: 30px;
 
     border-left: 5px solid #e50914;
-    padding-left: 12px;
 }
 
 /* =========================
@@ -280,9 +285,9 @@ body {
 
     text-align: center;
 
-    transition: transform .2s, background .2s;
-
     overflow: hidden;
+
+    transition: .2s;
 }
 
 .card:hover {
@@ -372,7 +377,9 @@ body {
 
 .search-info {
     max-width: 1100px;
+
     margin: 10px auto 20px;
+
     color: #aaa;
 }
 
@@ -402,7 +409,6 @@ body {
     display: none;
 
     position: fixed;
-
     inset: 0;
 
     z-index: 9999;
@@ -420,86 +426,35 @@ body {
 
     width: 95%;
     max-width: 1200px;
-
-    background: #000;
-
-    border-radius: 12px;
-
-    overflow: visible;
 }
 
-#video {
+#movieFrame {
     width: 100%;
-    max-height: 80vh;
-    display: none;
-
-    background: #000;
-
-    border-radius: 10px;
-}
-
-/* IFRAME */
-
-.player-box iframe {
-    width: 100%;
-    height: 650px;
+    height: 70vh;
 
     display: block;
 
-    border: 0;
-
+    border: none;
     border-radius: 10px;
 
-    background: #000;
+    background: black;
 }
 
 /* =========================
-   BUTOANE PLAYER
+   PLAYER BUTOANE
 ========================= */
 
-.player-controls {
-    position: absolute;
-
-    bottom: -60px;
-    left: 0;
-    right: 0;
-
-    display: flex;
-    justify-content: center;
-
-    gap: 10px;
-}
-
-.player-control-btn {
-    border: none;
-
-    padding: 11px 18px;
-
-    border-radius: 8px;
-
-    background: #e50914;
-    color: white;
-
-    font-size: 15px;
-    font-weight: bold;
-
-    cursor: pointer;
-}
-
-.player-control-btn:hover {
-    background: #ff1f2d;
-}
-
-/* =========================
-   CLOSE
-========================= */
-
-.close {
+.player-buttons {
     position: absolute;
 
     top: -55px;
     right: 0;
 
+    display: flex;
+    gap: 10px;
+}
+
+.player-buttons button {
     width: 45px;
     height: 45px;
 
@@ -507,56 +462,43 @@ body {
     border-radius: 50%;
 
     background: #e50914;
-
     color: white;
 
-    font-size: 24px;
+    font-size: 20px;
 
     cursor: pointer;
-
-    z-index: 10000;
 }
 
-.close:hover {
+.player-buttons button:hover {
     background: #ff1f2d;
 }
 
 /* =========================
-   FULLSCREEN
+   MESAJ
 ========================= */
 
-.player-box:fullscreen {
-    width: 100vw;
-    height: 100vh;
+.mesaj {
+    max-width: 600px;
 
-    max-width: none;
+    margin: 60px auto;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding: 60px 20px;
 
-    background: #000;
+    text-align: center;
+
+    background: #181818;
+
+    border-radius: 15px;
 }
 
-.player-box:fullscreen iframe {
-    width: 100vw;
-    height: 100vh;
-
-    border-radius: 0;
+.mesaj-icon {
+    font-size: 60px;
+    margin-bottom: 15px;
 }
 
-.player-box:-webkit-full-screen {
-    width: 100vw;
-    height: 100vh;
-
-    background: #000;
-}
-
-.player-box:-webkit-full-screen iframe {
-    width: 100vw;
-    height: 100vh;
-
-    border-radius: 0;
+.mesaj p {
+    color: #aaa;
+    margin-top: 10px;
 }
 
 /* =========================
@@ -573,10 +515,6 @@ body {
     .filme-grid {
         grid-template-columns:
             repeat(2, minmax(0, 1fr));
-    }
-
-    .player-box iframe {
-        height: 500px;
     }
 }
 
@@ -613,24 +551,20 @@ body {
         gap: 20px;
     }
 
+    #movieFrame {
+        height: 55vh;
+    }
+
     .player-box {
         width: 98%;
     }
 
-    .player-box iframe {
-        height: 300px;
-    }
-
-    .close {
+    .player-buttons {
         top: -50px;
     }
 
     .search-container {
         padding: 0 10px;
-    }
-
-    .player-controls {
-        bottom: -55px;
     }
 }
 </style>
@@ -639,7 +573,7 @@ body {
 <body>
 
 <!-- =========================
-     HEADER
+     MENIU
 ========================= -->
 
 <header class="header">
@@ -650,23 +584,23 @@ body {
 
     <nav class="menu">
 
-        <button type="button" onclick="showPage('acasa')">
+        <button onclick="showPage('acasa')">
             🏠 Acasă
         </button>
 
-        <button type="button" onclick="showPage('filme')">
+        <button onclick="showPage('filme')">
             🎬 Filme
         </button>
 
-        <button type="button" onclick="showPage('desene')">
+        <button onclick="showPage('desene')">
             🧸 Desene
         </button>
 
-        <button type="button" onclick="showPage('anime')">
+        <button onclick="showPage('anime')">
             🇯🇵 Anime
         </button>
 
-        <button type="button" onclick="showPage('categorii')">
+        <button onclick="showPage('categorii')">
             📂 Categorii
         </button>
 
@@ -674,7 +608,10 @@ body {
 
 </header>
 
-<!-- SEARCH -->
+
+<!-- =========================
+     SEARCH
+========================= -->
 
 <div class="search-container">
 
@@ -691,6 +628,7 @@ body {
     </div>
 
 </div>
+
 
 <!-- =========================
      ACASA
@@ -713,7 +651,6 @@ body {
             </p>
 
             <button
-                type="button"
                 class="hero-button"
                 onclick="showPage('filme')">
 
@@ -726,6 +663,7 @@ body {
     </div>
 
 </section>
+
 
 <!-- =========================
      FILME
@@ -740,47 +678,47 @@ body {
     <div class="filtre">
 
         <button class="filtru-btn activ"
-            onclick="filtreaza('toate', this)">
+                onclick="filtreaza('toate', this)">
             Toate
         </button>
 
         <button class="filtru-btn"
-            onclick="filtreaza('Actiune', this)">
+                onclick="filtreaza('Actiune', this)">
             💥 Acțiune
         </button>
 
         <button class="filtru-btn"
-            onclick="filtreaza('Aventura', this)">
+                onclick="filtreaza('Aventura', this)">
             🏔️ Aventură
         </button>
 
         <button class="filtru-btn"
-            onclick="filtreaza('Comedie', this)">
+                onclick="filtreaza('Comedie', this)">
             😂 Comedie
         </button>
 
         <button class="filtru-btn"
-            onclick="filtreaza('Horror', this)">
+                onclick="filtreaza('Horror', this)">
             👻 Horror
         </button>
 
         <button class="filtru-btn"
-            onclick="filtreaza('Romantic', this)">
+                onclick="filtreaza('Romantic', this)">
             ❤️ Romantic
         </button>
 
         <button class="filtru-btn"
-            onclick="filtreaza('SF', this)">
+                onclick="filtreaza('SF', this)">
             🚀 SF
         </button>
 
         <button class="filtru-btn"
-            onclick="filtreaza('Drama', this)">
+                onclick="filtreaza('Drama', this)">
             🎭 Dramă
         </button>
 
         <button class="filtru-btn"
-            onclick="filtreaza('Crime', this)">
+                onclick="filtreaza('Crime', this)">
             🔫 Crime
         </button>
 
@@ -792,7 +730,7 @@ body {
 
     <div class="no-results" id="noResults">
 
-        🔎
+        <div class="mesaj-icon">🔎</div>
 
         <h3>Nu am găsit nimic</h3>
 
@@ -801,6 +739,7 @@ body {
     </div>
 
 </section>
+
 
 <!-- =========================
      DESENE
@@ -812,9 +751,13 @@ body {
         🧸 Desene
     </h2>
 
-    <div class="filme-grid" id="deseneGrid"></div>
+    <div
+        class="filme-grid"
+        id="deseneGrid">
+    </div>
 
 </section>
+
 
 <!-- =========================
      ANIME
@@ -826,9 +769,13 @@ body {
         🇯🇵 Anime
     </h2>
 
-    <div class="filme-grid" id="animeGrid"></div>
+    <div
+        class="filme-grid"
+        id="animeGrid">
+    </div>
 
 </section>
+
 
 <!-- =========================
      CATEGORII
@@ -878,130 +825,120 @@ body {
 
 </section>
 
+
 <!-- =========================
      PLAYER
 ========================= -->
 
 <div id="player">
 
-    <div class="player-box" id="playerBox">
+    <div class="player-box">
 
-        <button
-            type="button"
-            class="close"
-            onclick="closeMovie()">
-            ✕
-        </button>
-
-        <video
-            id="video"
-            controls
-            playsinline>
-        </video>
-
-        <div class="player-controls">
+        <div class="player-buttons">
 
             <button
-                type="button"
-                class="player-control-btn"
-                onclick="toggleFullscreen()">
-
-                ⛶ Full Screen
-
+                onclick="fullScreenMovie()"
+                title="Full screen">
+                ⛶
             </button>
 
             <button
-                type="button"
-                class="player-control-btn"
-                onclick="closeMovie()">
-
-                ✕ Închide
-
+                onclick="closeMovie()"
+                title="Închide">
+                ✕
             </button>
 
         </div>
+
+        <iframe
+            id="movieFrame"
+            allow="autoplay; fullscreen"
+            allowfullscreen>
+        </iframe>
 
     </div>
 
 </div>
 
+
 <script>
 
-/* =========================
-   LISTA CONȚINUT
-========================= */
+/* =====================================================
+   LISTA DE CONȚINUT
+===================================================== */
 
-const continut = [
+const continut = [];
 
-    /* =====================
-       FILME
-    ===================== */
 
-    {
-        id: 1,
-        nume: "A Bronx Tale",
-        tip: "film",
-        categorie: "Drama",
-        gen: "Drama, Crime",
-        an: "1993",
-        imagine: "images/film1.jpg",
-        video: ""
-    },
+/* =====================================================
+   🎬 FILME 1 - 50
+===================================================== */
 
-    {
-        id: 2,
-        nume: "Mai furios, mai iute",
-        tip: "film",
-        categorie: "Aventura",
-        gen: "Aventură",
-        an: "2026",
-        imagine: "images/film2.jpg",
-        video: ""
-    }
-
+const categoriiFilme = [
+    "Actiune",
+    "Aventura",
+    "Comedie",
+    "Horror",
+    "Romantic",
+    "SF",
+    "Drama",
+    "Crime"
 ];
-
-/*
-====================================================
-ADAUGĂ AICI RESTUL FILMELOR TALE
-====================================================
-
-Exemplu:
-
-{
-    id: 3,
-    nume: "Numele filmului",
-    tip: "film",
-    categorie: "Actiune",
-    gen: "Acțiune",
-    an: "2026",
-    imagine: "images/film3.jpg",
-    video: ""
-},
-
-====================================================
-DESENE
-====================================================
-*/
 
 for (let i = 1; i <= 50; i++) {
 
     continut.push({
 
-        id: 1000 + i,
+        id: i,
+
+        nume: "Film " + i,
+
+        tip: "film",
+
+        categorie:
+            categoriiFilme[(i - 1) % categoriiFilme.length],
+
+        gen:
+            categoriiFilme[(i - 1) % categoriiFilme.length],
+
+        an: "2026",
+
+        imagine:
+            "images/film" + i + ".jpg",
+
+        video: ""
+
+    });
+
+}
+
+
+/* =====================================================
+   🧸 DESENE 1 - 50
+===================================================== */
+
+const categoriiDesene = [
+    "Comedie",
+    "Aventura",
+    "Actiune",
+    "Drama"
+];
+
+for (let i = 1; i <= 50; i++) {
+
+    continut.push({
+
+        id: i,
 
         nume: "Desen " + i,
 
         tip: "desen",
 
         categorie:
-            i % 3 === 0
-                ? "Actiune"
-                : i % 2 === 0
-                    ? "Aventura"
-                    : "Comedie",
+            categoriiDesene[(i - 1) % categoriiDesene.length],
 
-        gen: "Desene",
+        gen:
+            categoriiDesene[(i - 1) % categoriiDesene.length],
 
         an: "2026",
 
@@ -1014,30 +951,33 @@ for (let i = 1; i <= 50; i++) {
 
 }
 
-/*
-====================================================
-ANIME
-====================================================
-*/
+
+/* =====================================================
+   🇯🇵 ANIME 1 - 50
+===================================================== */
+
+const categoriiAnime = [
+    "Actiune",
+    "Aventura",
+    "SF",
+    "Drama"
+];
 
 for (let i = 1; i <= 50; i++) {
 
     continut.push({
 
-        id: 2000 + i,
+        id: i,
 
         nume: "Anime " + i,
 
         tip: "anime",
 
         categorie:
-            i % 3 === 0
-                ? "Comedie"
-                : i % 2 === 0
-                    ? "Aventura"
-                    : "Actiune",
+            categoriiAnime[(i - 1) % categoriiAnime.length],
 
-        gen: "Anime",
+        gen:
+            categoriiAnime[(i - 1) % categoriiAnime.length],
 
         an: "2026",
 
@@ -1050,9 +990,10 @@ for (let i = 1; i <= 50; i++) {
 
 }
 
-/* =========================
-   SHOW PAGE
-========================= */
+
+/* =====================================================
+   SCHIMBA PAGINA
+===================================================== */
 
 function showPage(pageId) {
 
@@ -1077,11 +1018,13 @@ function showPage(pageId) {
         top: 0,
         behavior: "smooth"
     });
+
 }
 
-/* =========================
-   CARD
-========================= */
+
+/* =====================================================
+   CREARE CARD
+===================================================== */
 
 function creeazaCard(item) {
 
@@ -1094,22 +1037,29 @@ function creeazaCard(item) {
         document.createElement("img");
 
     img.src = item.imagine;
+
     img.alt = item.nume;
 
     img.onerror = function() {
+
         this.style.display = "none";
+
     };
 
-    const h3 =
+
+    const title =
         document.createElement("h3");
 
-    h3.textContent = item.nume;
+    title.textContent =
+        item.nume;
 
-    const p =
+
+    const info =
         document.createElement("p");
 
-    p.textContent =
+    info.textContent =
         item.gen + " • " + item.an;
+
 
     const button =
         document.createElement("button");
@@ -1125,72 +1075,111 @@ function creeazaCard(item) {
 
     };
 
+
     card.appendChild(img);
-    card.appendChild(h3);
-    card.appendChild(p);
+
+    card.appendChild(title);
+
+    card.appendChild(info);
+
     card.appendChild(button);
 
+
     return card;
+
 }
 
-/* =========================
-   AFIȘARE
-========================= */
 
-function afiseazaContinut() {
+/* =====================================================
+   AFIȘARE FILME
+===================================================== */
 
-    const filmeGrid =
-        document.getElementById("filmeGrid");
-
-    const deseneGrid =
-        document.getElementById("deseneGrid");
-
-    const animeGrid =
-        document.getElementById("animeGrid");
-
-    filmeGrid.innerHTML = "";
-    deseneGrid.innerHTML = "";
-    animeGrid.innerHTML = "";
-
-    continut.forEach(function(item) {
-
-        const card =
-            creeazaCard(item);
-
-        if (item.tip === "film") {
-
-            filmeGrid.appendChild(card);
-
-        }
-
-        if (item.tip === "desen") {
-
-            deseneGrid.appendChild(card);
-
-        }
-
-        if (item.tip === "anime") {
-
-            animeGrid.appendChild(card);
-
-        }
-
-    });
-}
-
-/* =========================
-   FILTRARE
-========================= */
-
-function filtreaza(categorie, buton) {
+function afiseazaFilme(lista) {
 
     const grid =
         document.getElementById("filmeGrid");
 
     grid.innerHTML = "";
 
-    continut
-        .filter(function(item) {
+    lista.forEach(function(item) {
+
+        grid.appendChild(
+            creeazaCard(item)
+        );
+
+    });
+
+}
+
+
+/* =====================================================
+   AFIȘARE DESENE
+===================================================== */
+
+function afiseazaDesene() {
+
+    const grid =
+        document.getElementById("deseneGrid");
+
+    grid.innerHTML = "";
+
+    const desene =
+        continut.filter(function(item) {
+
+            return item.tip === "desen";
+
+        });
+
+    desene.forEach(function(item) {
+
+        grid.appendChild(
+            creeazaCard(item)
+        );
+
+    });
+
+}
+
+
+/* =====================================================
+   AFIȘARE ANIME
+===================================================== */
+
+function afiseazaAnime() {
+
+    const grid =
+        document.getElementById("animeGrid");
+
+    grid.innerHTML = "";
+
+    const anime =
+        continut.filter(function(item) {
+
+            return item.tip === "anime";
+
+        });
+
+    anime.forEach(function(item) {
+
+        grid.appendChild(
+            creeazaCard(item)
+        );
+
+    });
+
+}
+
+
+/* =====================================================
+   FILTRARE
+===================================================== */
+
+function filtreaza(categorie, buton) {
+
+    showPage("filme");
+
+    const filme =
+        continut.filter(function(item) {
 
             if (item.tip !== "film") {
                 return false;
@@ -1202,14 +1191,11 @@ function filtreaza(categorie, buton) {
 
             return item.categorie === categorie;
 
-        })
-        .forEach(function(item) {
-
-            grid.appendChild(
-                creeazaCard(item)
-            );
-
         });
+
+
+    afiseazaFilme(filme);
+
 
     document
         .querySelectorAll(".filtru-btn")
@@ -1219,72 +1205,99 @@ function filtreaza(categorie, buton) {
 
         });
 
+
     if (buton) {
+
         buton.classList.add("activ");
+
     }
+
+
+    document
+        .getElementById("searchInfo")
+        .textContent = "";
+
 }
 
-/* =========================
+
+/* =====================================================
    CATEGORIE
-========================= */
+===================================================== */
 
 function filtreazaSiDeschide(categorie) {
 
     showPage("filme");
 
-    const grid =
-        document.getElementById("filmeGrid");
-
-    grid.innerHTML = "";
-
-    continut
-        .filter(function(item) {
+    const filme =
+        continut.filter(function(item) {
 
             return (
                 item.tip === "film" &&
                 item.categorie === categorie
             );
 
-        })
-        .forEach(function(item) {
-
-            grid.appendChild(
-                creeazaCard(item)
-            );
-
         });
+
+    afiseazaFilme(filme);
+
+    document
+        .getElementById("searchInfo")
+        .textContent =
+        filme.length +
+        " film(e) din categoria " +
+        categorie;
+
 }
 
-/* =========================
+
+/* =====================================================
    SEARCH
-========================= */
+===================================================== */
 
 const searchInput =
     document.getElementById("searchInput");
+
 
 searchInput.addEventListener(
     "input",
     function() {
 
         const text =
-            searchInput.value
+            this.value
                 .toLowerCase()
                 .trim();
 
+
+        const info =
+            document.getElementById(
+                "searchInfo"
+            );
+
+        const noResults =
+            document.getElementById(
+                "noResults"
+            );
+
+
         if (text === "") {
 
-            document
-                .getElementById("searchInfo")
-                .textContent = "";
+            info.textContent = "";
 
-            document
-                .getElementById("noResults")
-                .style.display = "none";
+            noResults.style.display =
+                "none";
 
-            afiseazaContinut();
+            afiseazaFilme(
+                continut.filter(function(item) {
+
+                    return item.tip === "film";
+
+                })
+            );
 
             return;
+
         }
+
 
         const rezultate =
             continut.filter(function(item) {
@@ -1307,199 +1320,133 @@ searchInput.addEventListener(
                         .toLowerCase()
                         .includes(text)
 
+                    ||
+
+                    item.tip
+                        .toLowerCase()
+                        .includes(text)
+
                 );
 
             });
 
-        afiseazaRezultateCautare(rezultate);
+
+        showPage("filme");
+
+
+        afiseazaFilme(rezultate);
+
+
+        info.textContent =
+            rezultate.length +
+            " rezultat(e) găsit(e)";
+
+
+        if (rezultate.length === 0) {
+
+            noResults.style.display =
+                "block";
+
+        } else {
+
+            noResults.style.display =
+                "none";
+
+        }
 
     }
 );
 
-/* =========================
-   REZULTATE
-========================= */
 
-function afiseazaRezultateCautare(rezultate) {
-
-    showPage("filme");
-
-    const grid =
-        document.getElementById("filmeGrid");
-
-    const info =
-        document.getElementById("searchInfo");
-
-    const noResults =
-        document.getElementById("noResults");
-
-    grid.innerHTML = "";
-
-    info.textContent =
-        rezultate.length +
-        " rezultat(e) găsit(e)";
-
-    if (rezultate.length === 0) {
-
-        noResults.style.display = "block";
-
-        return;
-    }
-
-    noResults.style.display = "none";
-
-    rezultate.forEach(function(item) {
-
-        grid.appendChild(
-            creeazaCard(item)
-        );
-
-    });
-}
-
-/* =========================
+/* =====================================================
    PLAYER
-========================= */
+===================================================== */
 
 function openMovie(videoLink) {
 
     if (!videoLink) {
 
         alert(
-            "Acest videoclip nu are încă un link."
+            "Acest titlu nu are încă o sursă video adăugată."
         );
 
         return;
+
     }
+
 
     const player =
         document.getElementById("player");
 
-    const playerBox =
-        document.getElementById("playerBox");
+    const frame =
+        document.getElementById("movieFrame");
 
-    const video =
-        document.getElementById("video");
 
-    /*
-    Eliminăm iframe-ul vechi.
-    */
+    frame.src = videoLink;
 
-    const oldIframe =
-        playerBox.querySelector("iframe");
 
-    if (oldIframe) {
-        oldIframe.remove();
-    }
+    player.style.display =
+        "flex";
 
-    video.pause();
-    video.style.display = "none";
+    document.body.style.overflow =
+        "hidden";
 
-    /*
-    Pentru un player extern compatibil
-    folosim iframe.
-    */
-
-    const iframe =
-        document.createElement("iframe");
-
-    iframe.src = videoLink;
-
-    iframe.allowFullscreen = true;
-
-    iframe.setAttribute(
-        "allowfullscreen",
-        ""
-    );
-
-    iframe.setAttribute(
-        "allow",
-        "autoplay; fullscreen; picture-in-picture"
-    );
-
-    playerBox.insertBefore(
-        iframe,
-        playerBox.querySelector(".player-controls")
-    );
-
-    player.style.display = "flex";
 }
 
-/* =========================
-   FULLSCREEN
-========================= */
 
-function toggleFullscreen() {
+/* =====================================================
+   FULL SCREEN
+===================================================== */
 
-    const playerBox =
-        document.getElementById("playerBox");
+function fullScreenMovie() {
 
-    if (!document.fullscreenElement) {
+    const frame =
+        document.getElementById("movieFrame");
 
-        if (
-            playerBox.requestFullscreen
-        ) {
 
-            playerBox.requestFullscreen();
+    if (frame.requestFullscreen) {
 
-        }
-
-        else if (
-            playerBox.webkitRequestFullscreen
-        ) {
-
-            playerBox.webkitRequestFullscreen();
-
-        }
-
-    } else {
-
-        if (document.exitFullscreen) {
-
-            document.exitFullscreen();
-
-        }
+        frame.requestFullscreen();
 
     }
+
+    else if (frame.webkitRequestFullscreen) {
+
+        frame.webkitRequestFullscreen();
+
+    }
+
 }
 
-/* =========================
-   CLOSE
-========================= */
+
+/* =====================================================
+   ÎNCHIDE PLAYER
+===================================================== */
 
 function closeMovie() {
 
     const player =
         document.getElementById("player");
 
-    const playerBox =
-        document.getElementById("playerBox");
+    const frame =
+        document.getElementById("movieFrame");
 
-    const video =
-        document.getElementById("video");
 
-    const iframe =
-        playerBox.querySelector("iframe");
+    frame.src = "";
 
-    if (iframe) {
-        iframe.remove();
-    }
 
-    video.pause();
+    player.style.display =
+        "none";
 
-    if (document.fullscreenElement) {
+    document.body.style.overflow =
+        "auto";
 
-        document.exitFullscreen()
-            .catch(function() {});
-
-    }
-
-    player.style.display = "none";
 }
 
-/* =========================
+
+/* =====================================================
    ESC
-========================= */
+===================================================== */
 
 document.addEventListener(
     "keydown",
@@ -1514,13 +1461,25 @@ document.addEventListener(
     }
 );
 
-/* =========================
-   PORNIRE
-========================= */
 
-afiseazaContinut();
+/* =====================================================
+   PORNIRE SITE
+===================================================== */
+
+afiseazaFilme(
+    continut.filter(function(item) {
+
+        return item.tip === "film";
+
+    })
+);
+
+afiseazaDesene();
+
+afiseazaAnime();
 
 </script>
 
 </body>
 </html>
+```
