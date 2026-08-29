@@ -1,0 +1,670 @@
+```css
+/* ========================================
+   MOVIESHOWRO - STYLE
+======================================== */
+
+
+/* RESET */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* ========================================
+   BODY
+======================================== */
+
+body {
+    min-height: 100vh;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #050505,
+            #151515,
+            #080808
+        );
+}
+
+
+/* ========================================
+   HEADER / MENIU
+======================================== */
+
+.header {
+    position: sticky;
+
+    top: 0;
+
+    z-index: 1000;
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 15px 30px;
+
+    background: rgba(0, 0, 0, 0.95);
+
+    border-bottom: 1px solid #333;
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.5);
+}
+
+
+/* LOGO */
+
+.logo {
+    font-size: 26px;
+
+    font-weight: bold;
+
+    color: white;
+
+    white-space: nowrap;
+}
+
+
+/* ========================================
+   BUTOANE MENIU
+======================================== */
+
+.menu {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+}
+
+
+.menu button {
+    padding: 10px 16px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: transparent;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s,
+        transform 0.2s;
+}
+
+
+.menu button:hover {
+    background: #e50914;
+
+    transform: translateY(-2px);
+}
+
+
+.menu button:active {
+    transform: scale(0.96);
+}
+
+
+/* ========================================
+   SECȚIUNI
+======================================== */
+
+.sectiune {
+    display: none;
+
+    min-height: calc(100vh - 75px);
+
+    padding: 40px 25px;
+}
+
+
+/* SECȚIUNEA ACTIVĂ */
+
+.sectiune.activa {
+    display: block;
+}
+
+
+/* ========================================
+   ACASĂ
+======================================== */
+
+.hero {
+    max-width: 1000px;
+
+    margin: 70px auto;
+
+    padding: 90px 30px;
+
+    text-align: center;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.65),
+            rgba(0, 0, 0, 0.9)
+        );
+
+    border: 1px solid #333;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.7);
+}
+
+
+.hero h1 {
+    margin-bottom: 18px;
+
+    font-size: 44px;
+}
+
+
+.hero p {
+    margin-bottom: 30px;
+
+    color: #bbb;
+
+    font-size: 19px;
+}
+
+
+/* BUTON HERO */
+
+.hero-button {
+    padding: 14px 25px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #e50914;
+
+    color: white;
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s,
+        transform 0.2s;
+}
+
+
+.hero-button:hover {
+    background: #ff1f2d;
+
+    transform: scale(1.05);
+}
+
+
+/* ========================================
+   TITLURI SECȚIUNI
+======================================== */
+
+.titlu-sectiune {
+    max-width: 1200px;
+
+    margin: 0 auto 30px;
+
+    font-size: 32px;
+
+    border-left: 5px solid #e50914;
+
+    padding-left: 12px;
+}
+
+
+/* ========================================
+   GRID FILME
+======================================== */
+
+.filme-grid {
+    width: 100%;
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fill,
+            minmax(220px, 1fr)
+        );
+
+    gap: 25px;
+}
+
+
+/* ========================================
+   CARD FILM
+======================================== */
+
+.card {
+    overflow: hidden;
+
+    padding: 12px;
+
+    background: #181818;
+
+    border: 1px solid #292929;
+
+    border-radius: 12px;
+
+    text-align: center;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.5);
+
+    transition:
+        transform 0.25s,
+        box-shadow 0.25s;
+}
+
+
+.card:hover {
+    transform: translateY(-7px);
+
+    box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.7);
+}
+
+
+/* POSTER */
+
+.card img {
+    display: block;
+
+    width: 100%;
+
+    height: 320px;
+
+    object-fit: cover;
+
+    border-radius: 8px;
+
+    margin-bottom: 15px;
+}
+
+
+/* NUME FILM */
+
+.card h3 {
+    margin-bottom: 8px;
+
+    font-size: 20px;
+}
+
+
+/* INFORMAȚII FILM */
+
+.card p {
+    margin-bottom: 15px;
+
+    color: #aaa;
+
+    font-size: 14px;
+}
+
+
+/* BUTON FILM */
+
+.card button {
+    width: 100%;
+
+    padding: 12px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background: #e50914;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s,
+        transform 0.2s;
+}
+
+
+.card button:hover {
+    background: #ff1f2d;
+
+    transform: scale(1.02);
+}
+
+
+/* ========================================
+   DESENE
+======================================== */
+
+.mesaj {
+    width: 100%;
+
+    max-width: 600px;
+
+    margin: 70px auto;
+
+    padding: 60px 25px;
+
+    text-align: center;
+
+    background: #181818;
+
+    border: 1px solid #292929;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.5);
+}
+
+
+.mesaj-icon {
+    margin-bottom: 15px;
+
+    font-size: 65px;
+}
+
+
+.mesaj h3 {
+    margin-bottom: 10px;
+
+    font-size: 26px;
+}
+
+
+.mesaj p {
+    color: #aaa;
+
+    font-size: 16px;
+}
+
+
+/* ========================================
+   CATEGORII
+======================================== */
+
+.categorii-grid {
+    width: 100%;
+
+    max-width: 900px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(180px, 1fr)
+        );
+
+    gap: 18px;
+}
+
+
+.categorii-grid button {
+    min-height: 100px;
+
+    padding: 20px;
+
+    border: 1px solid #333;
+
+    border-radius: 12px;
+
+    background: #181818;
+
+    color: white;
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s,
+        transform 0.2s,
+        border-color 0.2s;
+}
+
+
+.categorii-grid button:hover {
+    background: #e50914;
+
+    border-color: #e50914;
+
+    transform: translateY(-5px);
+}
+
+
+/* ========================================
+   PLAYER VIDEO
+======================================== */
+
+#player {
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(0, 0, 0, 0.97);
+}
+
+
+.player-box {
+    position: relative;
+
+    width: 90%;
+
+    max-width: 1000px;
+}
+
+
+.player-box video {
+    display: block;
+
+    width: 100%;
+
+    max-height: 85vh;
+
+    background: black;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 20px 70px rgba(0, 0, 0, 0.9);
+}
+
+
+/* ========================================
+   BUTON ÎNCHIDERE VIDEO
+======================================== */
+
+.close {
+    position: absolute;
+
+    top: -55px;
+
+    right: 0;
+
+    width: 45px;
+
+    height: 45px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #e50914;
+
+    color: white;
+
+    font-size: 25px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    z-index: 10000;
+
+    transition:
+        background 0.2s,
+        transform 0.2s;
+}
+
+
+.close:hover {
+    background: #ff1f2d;
+
+    transform: scale(1.1);
+}
+
+
+/* ========================================
+   SCROLLBAR
+======================================== */
+
+::-webkit-scrollbar {
+    width: 9px;
+}
+
+
+::-webkit-scrollbar-track {
+    background: #050505;
+}
+
+
+::-webkit-scrollbar-thumb {
+    background: #444;
+
+    border-radius: 10px;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+    background: #666;
+}
+
+
+/* ========================================
+   TELEFON
+======================================== */
+
+@media (max-width: 700px) {
+
+    .header {
+        flex-direction: column;
+
+        gap: 12px;
+
+        padding: 15px;
+    }
+
+
+    .logo {
+        font-size: 23px;
+    }
+
+
+    .menu {
+        width: 100%;
+
+        justify-content: center;
+
+        flex-wrap: wrap;
+    }
+
+
+    .menu button {
+        padding: 8px 10px;
+
+        font-size: 13px;
+    }
+
+
+    .sectiune {
+        padding: 25px 15px;
+    }
+
+
+    .hero {
+        margin: 30px auto;
+
+        padding: 55px 20px;
+    }
+
+
+    .hero h1 {
+        font-size: 30px;
+    }
+
+
+    .hero p {
+        font-size: 16px;
+    }
+
+
+    .titlu-sectiune {
+        font-size: 27px;
+    }
+
+
+    .card img {
+        height: 360px;
+    }
+
+
+    .player-box {
+        width: 96%;
+    }
+
+
+    .close {
+        top: -50px;
+    }
+
+}
+```
