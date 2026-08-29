@@ -1,2020 +1,1732 @@
+```html
 <!DOCTYPE html>
 <html lang="ro">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>MovieShowRo</title>
-
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            min-height: 100vh;
-            font-family: Arial, sans-serif;
-            background: #080808;
-            color: white;
-        }
-
-        /* =========================
-           MENIU
-        ========================= */
-
-        .header {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MovieShowRo</title>
 
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
 
-            padding: 15px 30px;
+body{
+    min-height:100vh;
+    font-family:Arial,sans-serif;
+    background:#080808;
+    color:white;
+}
 
-            background: #111;
-            border-bottom: 1px solid #333;
-        }
+/* MENIU */
 
-        .logo {
-            font-size: 25px;
-            font-weight: bold;
-            white-space: nowrap;
-        }
+.header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 
-        .menu {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
+    padding:15px 30px;
 
-        .menu button {
-            padding: 10px 15px;
-            border: none;
-            border-radius: 7px;
+    background:#111;
+    border-bottom:1px solid #333;
+}
 
-            background: transparent;
-            color: white;
+.logo{
+    font-size:25px;
+    font-weight:bold;
+    white-space:nowrap;
+}
 
-            font-weight: bold;
-            cursor: pointer;
-        }
+.menu{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    justify-content:center;
+}
 
-        .menu button:hover {
-            background: #e50914;
-        }
+.menu button{
+    padding:10px 15px;
+    border:0;
+    border-radius:7px;
 
-        /* =========================
-           SEARCH
-        ========================= */
+    background:transparent;
+    color:white;
 
-        .search-container {
-            width: 100%;
-            max-width: 700px;
+    font-weight:bold;
+    cursor:pointer;
+}
 
-            margin: 25px auto 10px;
-            padding: 0 20px;
-        }
+.menu button:hover{
+    background:#e50914;
+}
 
-        .search-box {
-            display: flex;
-            align-items: center;
+/* SEARCH */
 
-            background: #181818;
-            border: 1px solid #333;
-            border-radius: 12px;
+.search-container{
+    width:100%;
+    max-width:700px;
 
-            padding: 5px 15px;
+    margin:25px auto 10px;
+    padding:0 20px;
+}
 
-            transition: .2s;
-        }
+.search-box{
+    display:flex;
+    align-items:center;
 
-        .search-box:focus-within {
-            border-color: #e50914;
-            box-shadow: 0 0 15px rgba(229, 9, 20, .2);
-        }
+    background:#181818;
+    border:1px solid #333;
+    border-radius:12px;
 
-        .search-icon {
-            font-size: 22px;
-            margin-right: 10px;
-        }
+    padding:5px 15px;
+}
 
-        #searchInput {
-            width: 100%;
+.search-box:focus-within{
+    border-color:#e50914;
+    box-shadow:0 0 15px rgba(229,9,20,.2);
+}
 
-            padding: 12px 5px;
+.search-icon{
+    font-size:22px;
+    margin-right:10px;
+}
 
-            border: none;
-            outline: none;
+#searchInput{
+    width:100%;
 
-            background: transparent;
-            color: white;
+    padding:12px 5px;
 
-            font-size: 16px;
-        }
+    border:0;
+    outline:0;
 
-        #searchInput::placeholder {
-            color: #888;
-        }
+    background:transparent;
+    color:white;
 
-        /* =========================
-           PAGINI
-        ========================= */
+    font-size:16px;
+}
 
-        .sectiune {
-            display: none;
+#searchInput::placeholder{
+    color:#888;
+}
 
-            min-height: calc(100vh - 70px);
+/* PAGINI */
 
-            padding: 25px 20px 50px;
-        }
+.sectiune{
+    display:none;
+    min-height:calc(100vh - 70px);
+    padding:25px 20px 50px;
+}
 
-        .sectiune.activa {
-            display: block;
-        }
+.sectiune.activa{
+    display:block;
+}
 
-        /* =========================
-           ACASA
-        ========================= */
+/* ACASA */
 
-        .hero {
-            max-width: 1100px;
-            min-height: 430px;
+.hero{
+    max-width:1100px;
+    min-height:430px;
 
-            margin: 30px auto;
+    margin:30px auto;
 
-            padding: 60px 40px;
+    padding:60px 40px;
 
-            display: flex;
-            align-items: center;
+    display:flex;
+    align-items:center;
 
-            border-radius: 20px;
+    border-radius:20px;
 
-            background:
-                linear-gradient(
-                    90deg,
-                    rgba(0,0,0,.95),
-                    rgba(0,0,0,.5)
-                ),
-                url("images/film1.jpg");
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,.95),
+            rgba(0,0,0,.5)
+        ),
+        url("images/film1.jpg");
 
-            background-size: cover;
-            background-position: center;
-        }
+    background-size:cover;
+    background-position:center;
+}
 
-        .hero-content {
-            max-width: 650px;
-        }
+.hero-content{
+    max-width:650px;
+}
 
-        .hero h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-        }
+.hero h1{
+    font-size:48px;
+    margin-bottom:20px;
+}
 
-        .hero h1 span {
-            color: #e50914;
-        }
+.hero h1 span{
+    color:#e50914;
+}
 
-        .hero p {
-            color: #ddd;
-            font-size: 18px;
-            line-height: 1.5;
-            margin-bottom: 25px;
-        }
+.hero p{
+    color:#ddd;
+    font-size:18px;
+    line-height:1.5;
+    margin-bottom:25px;
+}
 
-        .hero-button {
-            padding: 13px 22px;
+.hero-button{
+    padding:13px 22px;
 
-            border: none;
-            border-radius: 7px;
+    border:0;
+    border-radius:7px;
 
-            background: #e50914;
-            color: white;
+    background:#e50914;
+    color:white;
 
-            font-size: 16px;
-            font-weight: bold;
+    font-size:16px;
+    font-weight:bold;
 
-            cursor: pointer;
-        }
+    cursor:pointer;
+}
 
-        .hero-button:hover {
-            background: #ff1f2d;
-        }
+.hero-button:hover{
+    background:#ff1f2d;
+}
 
-        /* =========================
-           TITLURI
-        ========================= */
+/* TITLURI */
 
-        .titlu {
-            max-width: 1100px;
+.titlu{
+    max-width:1100px;
 
-            margin: 10px auto 25px;
+    margin:10px auto 25px;
 
-            font-size: 30px;
+    font-size:30px;
 
-            border-left: 5px solid #e50914;
+    border-left:5px solid #e50914;
 
-            padding-left: 12px;
-        }
+    padding-left:12px;
+}
 
-        /* =========================
-           FILTRE CATEGORII
-        ========================= */
+/* FILTRE */
 
-        .filtre {
-            max-width: 1100px;
+.filtre{
+    max-width:1100px;
 
-            margin: 0 auto 25px;
+    margin:0 auto 25px;
 
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+}
 
-        .filtru-btn {
-            padding: 9px 15px;
+.filtru-btn{
+    padding:9px 15px;
 
-            border: 1px solid #333;
-            border-radius: 20px;
+    border:1px solid #333;
+    border-radius:20px;
 
-            background: #181818;
-            color: white;
+    background:#181818;
+    color:white;
 
-            cursor: pointer;
-        }
+    cursor:pointer;
+}
 
-        .filtru-btn:hover,
-        .filtru-btn.activ {
-            background: #e50914;
-            border-color: #e50914;
-        }
+.filtru-btn:hover,
+.filtru-btn.activ{
+    background:#e50914;
+    border-color:#e50914;
+}
 
-        /* =========================
-           GRID
-        ========================= */
+/* GRID */
 
-        .filme-grid {
-            width: 100%;
-            max-width: 1200px;
+.filme-grid{
+    width:100%;
+    max-width:1200px;
 
-            margin: 0 auto;
+    margin:0 auto;
 
-            display: grid;
+    display:grid;
 
-            grid-template-columns:
-                repeat(4, minmax(0, 1fr));
+    grid-template-columns:
+        repeat(4,minmax(0,1fr));
 
-            gap: 25px;
-        }
+    gap:25px;
+}
 
-        /* =========================
-           CARD
-        ========================= */
+/* CARD */
 
-        .card {
-            width: 100%;
+.card{
+    width:100%;
 
-            padding: 12px;
+    padding:12px;
 
-            background: #181818;
+    background:#181818;
 
-            border-radius: 12px;
+    border-radius:12px;
 
-            text-align: center;
+    text-align:center;
 
-            transition:
-                transform .2s,
-                background .2s;
+    transition:.2s;
 
-            overflow: hidden;
-        }
+    overflow:hidden;
+}
 
-        .card:hover {
-            transform: translateY(-5px);
-            background: #222;
-        }
+.card:hover{
+    transform:translateY(-5px);
+    background:#222;
+}
 
-        .card img {
-            width: 100%;
-            height: 320px;
+.card img{
+    width:100%;
+    height:320px;
 
-            object-fit: cover;
+    object-fit:cover;
 
-            border-radius: 8px;
+    border-radius:8px;
 
-            margin-bottom: 12px;
-        }
+    margin-bottom:12px;
+}
 
-        .card h3 {
-            margin-bottom: 8px;
+.card h3{
+    margin-bottom:8px;
+    min-height:22px;
+}
 
-            min-height: 22px;
-        }
+.card p{
+    color:#aaa;
+    margin-bottom:15px;
+}
 
-        .card p {
-            color: #aaa;
-            margin-bottom: 15px;
-        }
+.card button{
+    width:100%;
 
-        .card button {
-            width: 100%;
+    padding:12px;
 
-            padding: 12px;
+    border:0;
+    border-radius:7px;
 
-            border: none;
-            border-radius: 7px;
+    background:#e50914;
+    color:white;
 
-            background: #e50914;
-            color: white;
+    font-weight:bold;
 
-            font-weight: bold;
+    cursor:pointer;
+}
 
-            cursor: pointer;
-        }
+.card button:hover{
+    background:#ff1f2d;
+}
 
-        .card button:hover {
-            background: #ff1f2d;
-        }
+/* CATEGORII */
 
-        /* =========================
-           MESAJ
-        ========================= */
+.categorii{
+    max-width:900px;
 
-        .mesaj {
-            max-width: 600px;
+    margin:auto;
 
-            margin: 60px auto;
+    display:grid;
 
-            padding: 60px 20px;
+    grid-template-columns:
+        repeat(auto-fit,minmax(180px,1fr));
 
-            text-align: center;
+    gap:15px;
+}
 
-            background: #181818;
+.categorii button{
+    padding:25px;
 
-            border-radius: 15px;
-        }
+    border:1px solid #333;
+    border-radius:10px;
 
-        .mesaj-icon {
-            font-size: 60px;
-            margin-bottom: 15px;
-        }
+    background:#181818;
+    color:white;
 
-        .mesaj p {
-            color: #aaa;
-            margin-top: 10px;
-        }
+    font-size:17px;
 
-        /* =========================
-           CATEGORII
-        ========================= */
+    cursor:pointer;
+}
 
-        .categorii {
-            max-width: 900px;
+.categorii button:hover{
+    background:#e50914;
+}
 
-            margin: auto;
+/* SEARCH */
 
-            display: grid;
+.search-info{
+    max-width:1100px;
 
-            grid-template-columns:
-                repeat(
-                    auto-fit,
-                    minmax(180px, 1fr)
-                );
+    margin:10px auto 20px;
 
-            gap: 15px;
-        }
+    color:#aaa;
 
-        .categorii button {
-            padding: 25px;
+    font-size:15px;
+}
 
-            border: 1px solid #333;
-            border-radius: 10px;
+.no-results{
+    display:none;
 
-            background: #181818;
-            color: white;
+    max-width:600px;
 
-            font-size: 17px;
+    margin:50px auto;
 
-            cursor: pointer;
-        }
+    padding:40px 20px;
 
-        .categorii button:hover {
-            background: #e50914;
-        }
+    text-align:center;
 
-        /* =========================
-           REZULTATE SEARCH
-        ========================= */
+    background:#181818;
 
-        .search-info {
-            max-width: 1100px;
+    border-radius:15px;
 
-            margin: 10px auto 20px;
+    color:#aaa;
+}
 
-            color: #aaa;
+/* PLAYER */
 
-            font-size: 15px;
-        }
+#player{
+    display:none;
 
-        .no-results {
-            display: none;
+    position:fixed;
 
-            max-width: 600px;
+    inset:0;
 
-            margin: 50px auto;
+    z-index:9999;
 
-            padding: 40px 20px;
+    background:rgba(0,0,0,.97);
 
-            text-align: center;
+    align-items:center;
+    justify-content:center;
 
-            background: #181818;
+    padding:20px;
+}
 
-            border-radius: 15px;
+.player-box{
+    position:relative;
 
-            color: #aaa;
-        }
+    width:95%;
+    max-width:1100px;
+}
 
-        /* =========================
-           PLAYER
-        ========================= */
+.player-frame{
+    width:100%;
+    height:650px;
 
-        #player {
-            display: none;
+    border:0;
 
-            position: fixed;
+    display:block;
 
-            inset: 0;
+    background:#000;
 
-            z-index: 9999;
+    border-radius:10px;
+}
 
-            background:
-                rgba(0,0,0,.97);
+.close{
+    position:absolute;
 
-            align-items: center;
-            justify-content: center;
+    top:-55px;
+    right:0;
 
-            padding: 20px;
-        }
+    width:45px;
+    height:45px;
 
-        .player-box {
-            position: relative;
+    border:0;
+    border-radius:50%;
 
-            width: 95%;
+    background:#e50914;
+    color:white;
 
-            max-width: 1100px;
-        }
+    font-size:24px;
 
-        #video {
-            width: 100%;
+    cursor:pointer;
 
-            max-height: 85vh;
+    z-index:10000;
+}
 
-            display: block;
+.close:hover{
+    background:#ff1f2d;
+}
 
-            background: black;
+/* TELEFON */
 
-            border-radius: 10px;
-        }
+@media(max-width:900px){
 
-        /* =========================
-           SUBTITRARE
-        ========================= */
+    .header{
+        flex-direction:column;
+        gap:12px;
+    }
 
-        video::cue {
-            color: white;
+    .filme-grid{
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+    }
+}
 
-            background:
-                rgba(0,0,0,.75);
+@media(max-width:550px){
 
-            font-size: 20px;
-        }
+    .header{
+        padding:15px;
+    }
 
-        /* =========================
-           BUTON INCHIDERE
-        ========================= */
+    .logo{
+        font-size:22px;
+    }
 
-        .close {
-            position: absolute;
+    .menu{
+        width:100%;
+    }
 
-            top: -55px;
-            right: 0;
+    .menu button{
+        padding:8px 10px;
+        font-size:13px;
+    }
 
-            width: 45px;
-            height: 45px;
+    .hero{
+        min-height:500px;
+        padding:35px 20px;
+    }
 
-            border: none;
-            border-radius: 50%;
+    .hero h1{
+        font-size:32px;
+    }
 
-            background: #e50914;
+    .filme-grid{
+        grid-template-columns:1fr;
+        gap:20px;
+    }
 
-            color: white;
+    .player-box{
+        width:98%;
+    }
 
-            font-size: 24px;
+    .player-frame{
+        height:55vh;
+    }
 
-            cursor: pointer;
+    .close{
+        top:-50px;
+    }
 
-            z-index: 10000;
-        }
-
-        .close:hover {
-            background: #ff1f2d;
-        }
-
-        /* =========================
-           TELEFON
-        ========================= */
-
-        @media (max-width: 900px) {
-
-            .header {
-                flex-direction: column;
-                gap: 12px;
-            }
-
-            .filme-grid {
-                grid-template-columns:
-                    repeat(2, minmax(0, 1fr));
-            }
-        }
-
-        @media (max-width: 550px) {
-
-            .header {
-                padding: 15px;
-            }
-
-            .logo {
-                font-size: 22px;
-            }
-
-            .menu {
-                width: 100%;
-            }
-
-            .menu button {
-                padding: 8px 10px;
-                font-size: 13px;
-            }
-
-            .hero {
-                min-height: 500px;
-                padding: 35px 20px;
-            }
-
-            .hero h1 {
-                font-size: 32px;
-            }
-
-            .filme-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .player-box {
-                width: 98%;
-            }
-
-            .close {
-                top: -50px;
-            }
-
-            .search-container {
-                padding: 0 10px;
-            }
-        }
-    </style>
+    .search-container{
+        padding:0 10px;
+    }
+}
+</style>
 </head>
-
 
 <body>
 
+<header class="header">
 
-    <!-- =========================
-         MENIU
-    ========================= -->
+<div class="logo">
+🎬 MovieShowRo
+</div>
 
-    <header class="header">
+<nav class="menu">
 
-        <div class="logo">
-            🎬 MovieShowRo
-        </div>
+<button type="button" onclick="showPage('acasa')">
+🏠 Acasă
+</button>
 
-        <nav class="menu">
+<button type="button" onclick="showPage('filme')">
+🎬 Filme
+</button>
 
-            <button
-                type="button"
-                onclick="showPage('acasa')">
-                🏠 Acasă
-            </button>
+<button type="button" onclick="showPage('desene')">
+🧸 Desene
+</button>
 
-            <button
-                type="button"
-                onclick="showPage('filme')">
-                🎬 Filme
-            </button>
+<button type="button" onclick="showPage('anime')">
+🇯🇵 Anime
+</button>
 
-            <button
-                type="button"
-                onclick="showPage('desene')">
-                🧸 Desene
-            </button>
+<button type="button" onclick="showPage('categorii')">
+📂 Categorii
+</button>
 
-            <button
-                type="button"
-                onclick="showPage('anime')">
-                🇯🇵 Anime
-            </button>
+</nav>
 
-            <button
-                type="button"
-                onclick="showPage('categorii')">
-                📂 Categorii
-            </button>
+</header>
 
-        </nav>
+<div class="search-container">
 
-    </header>
+<div class="search-box">
 
+<span class="search-icon">🔎</span>
 
-    <!-- =========================
-         SEARCH BAR
-    ========================= -->
+<input
+type="text"
+id="searchInput"
+placeholder="Caută filme, desene sau anime..."
+autocomplete="off">
 
-    <div class="search-container">
+</div>
 
-        <div class="search-box">
+</div>
 
-            <span class="search-icon">
-                🔎
-            </span>
+<!-- ACASA -->
 
-            <input
-                type="text"
-                id="searchInput"
-                placeholder="Caută filme, desene sau anime..."
-                autocomplete="off">
+<section id="acasa" class="sectiune activa">
 
-        </div>
+<div class="hero">
 
-    </div>
+<div class="hero-content">
 
+<h1>
+Bine ai venit pe
+<span>MovieShowRo</span> 🎬
+</h1>
 
-    <!-- =========================
-         ACASA
-    ========================= -->
+<p>
+Filme, desene și anime într-un singur loc.
+Alege ce vrei să vizionezi.
+</p>
 
-    <section
-        id="acasa"
-        class="sectiune activa">
+<button
+type="button"
+class="hero-button"
+onclick="showPage('filme')">
 
-        <div class="hero">
+▶ Vezi filmele
 
-            <div class="hero-content">
+</button>
 
-                <h1>
-                    Bine ai venit pe
-                    <span>MovieShowRo</span> 🎬
-                </h1>
+</div>
 
-                <p>
-                    Filme, desene și anime
-                    într-un singur loc.
-                    Alege ce vrei să vizionezi.
-                </p>
+</div>
 
-                <button
-                    type="button"
-                    class="hero-button"
-                    onclick="showPage('filme')">
+</section>
 
-                    ▶ Vezi filmele
+<!-- FILME -->
 
-                </button>
-
-            </div>
+<section id="filme" class="sectiune">
 
-        </div>
+<h2 class="titlu">🎬 Filme</h2>
 
-    </section>
+<div class="filtre">
 
+<button class="filtru-btn activ" type="button"
+onclick="filtreaza('toate',this)">
+Toate
+</button>
 
-    <!-- =========================
-         FILME
-    ========================= -->
+<button class="filtru-btn" type="button"
+onclick="filtreaza('Actiune',this)">
+💥 Acțiune
+</button>
 
-    <section
-        id="filme"
-        class="sectiune">
+<button class="filtru-btn" type="button"
+onclick="filtreaza('Aventura',this)">
+🏔️ Aventură
+</button>
 
-        <h2 class="titlu">
-            🎬 Filme
-        </h2>
+<button class="filtru-btn" type="button"
+onclick="filtreaza('Comedie',this)">
+😂 Comedie
+</button>
 
-        <div class="filtre">
+<button class="filtru-btn" type="button"
+onclick="filtreaza('Horror',this)">
+👻 Horror
+</button>
 
-            <button
-                class="filtru-btn activ"
-                onclick="filtreaza('toate')">
-                Toate
-            </button>
+<button class="filtru-btn" type="button"
+onclick="filtreaza('Romantic',this)">
+❤️ Romantic
+</button>
 
-            <button
-                class="filtru-btn"
-                onclick="filtreaza('Actiune')">
-                💥 Acțiune
-            </button>
+<button class="filtru-btn" type="button"
+onclick="filtreaza('SF',this)">
+🚀 SF
+</button>
 
-            <button
-                class="filtru-btn"
-                onclick="filtreaza('Aventura')">
-                🏔️ Aventură
-            </button>
+<button class="filtru-btn" type="button"
+onclick="filtreaza('Drama',this)">
+🎭 Dramă
+</button>
 
-            <button
-                class="filtru-btn"
-                onclick="filtreaza('Comedie')">
-                😂 Comedie
-            </button>
+<button class="filtru-btn" type="button"
+onclick="filtreaza('Crime',this)">
+🔫 Crime
+</button>
 
-            <button
-                class="filtru-btn"
-                onclick="filtreaza('Horror')">
-                👻 Horror
-            </button>
+</div>
 
-            <button
-                class="filtru-btn"
-                onclick="filtreaza('Romantic')">
-                ❤️ Romantic
-            </button>
+<div class="search-info" id="searchInfo"></div>
 
-            <button
-                class="filtru-btn"
-                onclick="filtreaza('SF')">
-                🚀 SF
-            </button>
+<div class="filme-grid" id="filmeGrid"></div>
 
-            <button
-                class="filtru-btn"
-                onclick="filtreaza('Drama')">
-                🎭 Dramă
-            </button>
+<div class="no-results" id="noResults">
 
-            <button
-                class="filtru-btn"
-                onclick="filtreaza('Crime')">
-                🔫 Crime
-            </button>
+<div style="font-size:50px;">🔎</div>
 
-        </div>
+<h3>Nu am găsit nimic</h3>
 
-        <div
-            class="search-info"
-            id="searchInfo">
-        </div>
+<p>Încearcă să cauți alt nume.</p>
 
-        <div
-            class="filme-grid"
-            id="filmeGrid">
-        </div>
+</div>
 
-        <div
-            class="no-results"
-            id="noResults">
+</section>
 
-            🔎
+<!-- DESENE -->
 
-            <h3>
-                Nu am găsit nimic
-            </h3>
+<section id="desene" class="sectiune">
 
-            <p>
-                Încearcă să cauți alt nume.
-            </p>
+<h2 class="titlu">🧸 Desene</h2>
 
-        </div>
+<div class="filme-grid" id="deseneGrid"></div>
 
-    </section>
+</section>
 
+<!-- ANIME -->
 
-    <!-- =========================
-         DESENE
-    ========================= -->
+<section id="anime" class="sectiune">
 
-    <section
-        id="desene"
-        class="sectiune">
+<h2 class="titlu">🇯🇵 Anime</h2>
 
-        <h2 class="titlu">
-            🧸 Desene
-        </h2>
+<div class="filme-grid" id="animeGrid"></div>
 
-        <div
-            class="filme-grid"
-            id="deseneGrid">
-        </div>
+</section>
 
-    </section>
+<!-- CATEGORII -->
 
+<section id="categorii" class="sectiune">
 
-    <!-- =========================
-         ANIME
-    ========================= -->
+<h2 class="titlu">📂 Categorii</h2>
 
-    <section
-        id="anime"
-        class="sectiune">
+<div class="categorii">
 
-        <h2 class="titlu">
-            🇯🇵 Anime
-        </h2>
+<button type="button"
+onclick="filtreazaSiDeschide('Actiune')">
+💥 Acțiune
+</button>
 
-        <div
-            class="filme-grid"
-            id="animeGrid">
-        </div>
+<button type="button"
+onclick="filtreazaSiDeschide('Aventura')">
+🏔️ Aventură
+</button>
 
-    </section>
+<button type="button"
+onclick="filtreazaSiDeschide('Comedie')">
+😂 Comedie
+</button>
 
+<button type="button"
+onclick="filtreazaSiDeschide('Horror')">
+👻 Horror
+</button>
 
-    <!-- =========================
-         CATEGORII
-    ========================= -->
+<button type="button"
+onclick="filtreazaSiDeschide('Romantic')">
+❤️ Romantic
+</button>
 
-    <section
-        id="categorii"
-        class="sectiune">
+<button type="button"
+onclick="filtreazaSiDeschide('SF')">
+🚀 SF
+</button>
 
-        <h2 class="titlu">
-            📂 Categorii
-        </h2>
+<button type="button"
+onclick="filtreazaSiDeschide('Drama')">
+🎭 Dramă
+</button>
 
-        <div class="categorii">
+<button type="button"
+onclick="filtreazaSiDeschide('Crime')">
+🔫 Crime
+</button>
 
-            <button
-                onclick="filtreazaSiDeschide('Actiune')">
-                💥 Acțiune
-            </button>
+</div>
+
+</section>
 
-            <button
-                onclick="filtreazaSiDeschide('Aventura')">
-                🏔️ Aventură
-            </button>
-
-            <button
-                onclick="filtreazaSiDeschide('Comedie')">
-                😂 Comedie
-            </button>
-
-            <button
-                onclick="filtreazaSiDeschide('Horror')">
-                👻 Horror
-            </button>
-
-            <button
-                onclick="filtreazaSiDeschide('Romantic')">
-                ❤️ Romantic
-            </button>
-
-            <button
-                onclick="filtreazaSiDeschide('SF')">
-                🚀 SF
-            </button>
-
-            <button
-                onclick="filtreazaSiDeschide('Drama')">
-                🎭 Dramă
-            </button>
-
-            <button
-                onclick="filtreazaSiDeschide('Crime')">
-                🔫 Crime
-            </button>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         PLAYER
-    ========================= -->
-
-    <div id="player">
-
-        <div class="player-box">
-
-            <button
-                type="button"
-                class="close"
-                onclick="closeMovie()">
-
-                ✕
-
-            </button>
-
-            <video
-                id="video"
-                controls
-                playsinline>
-
-                Browserul tău nu acceptă video.
-
-            </video>
-
-        </div>
-
-    </div>
-
-
-    <!-- =========================
-         JAVASCRIPT
-    ========================= -->
-
-    <script>
-
-        /* =========================
-           SCHIMBA PAGINA
-        ========================= */
-
-        function showPage(pageId) {
-
-            const pages =
-                document.querySelectorAll(
-                    ".sectiune"
-                );
-
-            pages.forEach(function(page) {
-
-                page.classList.remove(
-                    "activa"
-                );
-
-            });
-
-            const selectedPage =
-                document.getElementById(
-                    pageId
-                );
-
-            if (selectedPage) {
-
-                selectedPage.classList.add(
-                    "activa"
-                );
-
-            }
-
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-        }
-
-
-        /* =========================
-           LISTA FILME
-        ========================= */
-
-        const continut = [
-
-            /* =====================
-               FILMELE TALE
-            ===================== */
-
-            {
-                id: 1,
-                nume: "A Bronx Tale",
-                tip: "film",
-                categorie: "Drama",
-                gen: "Drama, Crime",
-                an: "1993",
-                imagine: "images/film1.jpg",
-
-                /* LINK MIXDROP AICI */
-                video: "https://mixdrop.top/e/nl0r1lr8h807wk"
-            },
-
-            {
-                id: 2,
-                nume: "Mai furios, mai iute",
-                tip: "film",
-                categorie: "Aventura",
-                gen: "Aventură",
-                an: "2026",
-                imagine: "images/film2.jpg",
-
-                /* LINK MIXDROP AICI */
-                video: "https://mixdrop.top/e/wlnrkwvjt6we3x"
-            },
-
-            {
-                id: 3,
-                nume: "Film 3",
-                tip: "film",
-                categorie: "Actiune",
-                gen: "Acțiune",
-                an: "2026",
-                imagine: "images/film3.jpg",
-                video: ""
-            },
-
-            {
-                id: 4,
-                nume: "Film 4",
-                tip: "film",
-                categorie: "Comedie",
-                gen: "Comedie",
-                an: "2026",
-                imagine: "images/film4.jpg",
-                video: ""
-            },
-
-            {
-                id: 5,
-                nume: "Film 5",
-                tip: "film",
-                categorie: "Horror",
-                gen: "Horror",
-                an: "2026",
-                imagine: "images/film5.jpg",
-                video: ""
-            },
-
-            {
-                id: 6,
-                nume: "Film 6",
-                tip: "film",
-                categorie: "Aventura",
-                gen: "Aventură",
-                an: "2026",
-                imagine: "images/film6.jpg",
-                video: ""
-            },
-
-            {
-                id: 7,
-                nume: "Film 7",
-                tip: "film",
-                categorie: "Actiune",
-                gen: "Acțiune",
-                an: "2026",
-                imagine: "images/film7.jpg",
-                video: ""
-            },
-
-            {
-                id: 8,
-                nume: "Film 8",
-                tip: "film",
-                categorie: "Comedie",
-                gen: "Comedie",
-                an: "2026",
-                imagine: "images/film8.jpg",
-                video: ""
-            },
-
-            {
-                id: 9,
-                nume: "Film 9",
-                tip: "film",
-                categorie: "Horror",
-                gen: "Horror",
-                an: "2026",
-                imagine: "images/film9.jpg",
-                video: ""
-            },
-
-            {
-                id: 10,
-                nume: "Film 10",
-                tip: "film",
-                categorie: "SF",
-                gen: "SF",
-                an: "2026",
-                imagine: "images/film10.jpg",
-                video: ""
-            },
-
-            {
-                id: 11,
-                nume: "Film 11",
-                tip: "film",
-                categorie: "Drama",
-                gen: "Dramă",
-                an: "2026",
-                imagine: "images/film11.jpg",
-                video: ""
-            },
-
-            {
-                id: 12,
-                nume: "Film 12",
-                tip: "film",
-                categorie: "Romantic",
-                gen: "Romantic",
-                an: "2026",
-                imagine: "images/film12.jpg",
-                video: ""
-            },
-
-            {
-                id: 13,
-                nume: "Film 13",
-                tip: "film",
-                categorie: "Actiune",
-                gen: "Acțiune",
-                an: "2026",
-                imagine: "images/film13.jpg",
-                video: ""
-            },
-
-            {
-                id: 14,
-                nume: "Film 14",
-                tip: "film",
-                categorie: "Aventura",
-                gen: "Aventură",
-                an: "2026",
-                imagine: "images/film14.jpg",
-                video: ""
-            },
-
-            {
-                id: 15,
-                nume: "Film 15",
-                tip: "film",
-                categorie: "Comedie",
-                gen: "Comedie",
-                an: "2026",
-                imagine: "images/film15.jpg",
-                video: ""
-            },
-
-            {
-                id: 16,
-                nume: "Film 16",
-                tip: "film",
-                categorie: "Horror",
-                gen: "Horror",
-                an: "2026",
-                imagine: "images/film16.jpg",
-                video: ""
-            },
-
-            {
-                id: 17,
-                nume: "Film 17",
-                tip: "film",
-                categorie: "SF",
-                gen: "SF",
-                an: "2026",
-                imagine: "images/film17.jpg",
-                video: ""
-            },
-
-            {
-                id: 18,
-                nume: "Film 18",
-                tip: "film",
-                categorie: "Drama",
-                gen: "Dramă",
-                an: "2026",
-                imagine: "images/film18.jpg",
-                video: ""
-            },
-
-            {
-                id: 19,
-                nume: "Film 19",
-                tip: "film",
-                categorie: "Actiune",
-                gen: "Acțiune",
-                an: "2026",
-                imagine: "images/film19.jpg",
-                video: ""
-            },
-
-            {
-                id: 20,
-                nume: "Film 20",
-                tip: "film",
-                categorie: "Aventura",
-                gen: "Aventură",
-                an: "2026",
-                imagine: "images/film20.jpg",
-                video: ""
-            },
-
-            {
-                id: 21,
-                nume: "Film 21",
-                tip: "film",
-                categorie: "Comedie",
-                gen: "Comedie",
-                an: "2026",
-                imagine: "images/film21.jpg",
-                video: ""
-            },
-
-            {
-                id: 22,
-                nume: "Film 22",
-                tip: "film",
-                categorie: "Horror",
-                gen: "Horror",
-                an: "2026",
-                imagine: "images/film22.jpg",
-                video: ""
-            },
-
-            {
-                id: 23,
-                nume: "Film 23",
-                tip: "film",
-                categorie: "SF",
-                gen: "SF",
-                an: "2026",
-                imagine: "images/film23.jpg",
-                video: ""
-            },
-
-            {
-                id: 24,
-                nume: "Film 24",
-                tip: "film",
-                categorie: "Drama",
-                gen: "Dramă",
-                an: "2026",
-                imagine: "images/film24.jpg",
-                video: ""
-            },
-
-            {
-                id: 25,
-                nume: "Film 25",
-                tip: "film",
-                categorie: "Romantic",
-                gen: "Romantic",
-                an: "2026",
-                imagine: "images/film25.jpg",
-                video: ""
-            },
-
-            {
-                id: 26,
-                nume: "Film 26",
-                tip: "film",
-                categorie: "Actiune",
-                gen: "Acțiune",
-                an: "2026",
-                imagine: "images/film26.jpg",
-                video: ""
-            },
-
-            {
-                id: 27,
-                nume: "Film 27",
-                tip: "film",
-                categorie: "Aventura",
-                gen: "Aventură",
-                an: "2026",
-                imagine: "images/film27.jpg",
-                video: ""
-            },
-
-            {
-                id: 28,
-                nume: "Film 28",
-                tip: "film",
-                categorie: "Comedie",
-                gen: "Comedie",
-                an: "2026",
-                imagine: "images/film28.jpg",
-                video: ""
-            },
-
-            {
-                id: 29,
-                nume: "Film 29",
-                tip: "film",
-                categorie: "Horror",
-                gen: "Horror",
-                an: "2026",
-                imagine: "images/film29.jpg",
-                video: ""
-            },
-
-            {
-                id: 30,
-                nume: "Film 30",
-                tip: "film",
-                categorie: "SF",
-                gen: "SF",
-                an: "2026",
-                imagine: "images/film30.jpg",
-                video: ""
-            },
-
-            {
-                id: 31,
-                nume: "Film 31",
-                tip: "film",
-                categorie: "Drama",
-                gen: "Dramă",
-                an: "2026",
-                imagine: "images/film31.jpg",
-                video: ""
-            },
-
-            {
-                id: 32,
-                nume: "Film 32",
-                tip: "film",
-                categorie: "Actiune",
-                gen: "Acțiune",
-                an: "2026",
-                imagine: "images/film32.jpg",
-                video: ""
-            },
-
-            {
-                id: 33,
-                nume: "Film 33",
-                tip: "film",
-                categorie: "Aventura",
-                gen: "Aventură",
-                an: "2026",
-                imagine: "images/film33.jpg",
-                video: ""
-            },
-
-            {
-                id: 34,
-                nume: "Film 34",
-                tip: "film",
-                categorie: "Comedie",
-                gen: "Comedie",
-                an: "2026",
-                imagine: "images/film34.jpg",
-                video: ""
-            },
-
-            {
-                id: 35,
-                nume: "Film 35",
-                tip: "film",
-                categorie: "Horror",
-                gen: "Horror",
-                an: "2026",
-                imagine: "images/film35.jpg",
-                video: ""
-            },
-
-            {
-                id: 36,
-                nume: "Film 36",
-                tip: "film",
-                categorie: "SF",
-                gen: "SF",
-                an: "2026",
-                imagine: "images/film36.jpg",
-                video: ""
-            },
-
-            {
-                id: 37,
-                nume: "Film 37",
-                tip: "film",
-                categorie: "Drama",
-                gen: "Dramă",
-                an: "2026",
-                imagine: "images/film37.jpg",
-                video: ""
-            },
-
-            {
-                id: 38,
-                nume: "Film 38",
-                tip: "film",
-                categorie: "Romantic",
-                gen: "Romantic",
-                an: "2026",
-                imagine: "images/film38.jpg",
-                video: ""
-            },
-
-            {
-                id: 39,
-                nume: "Film 39",
-                tip: "film",
-                categorie: "Actiune",
-                gen: "Acțiune",
-                an: "2026",
-                imagine: "images/film39.jpg",
-                video: ""
-            },
-
-            {
-                id: 40,
-                nume: "Film 40",
-                tip: "film",
-                categorie: "Aventura",
-                gen: "Aventură",
-                an: "2026",
-                imagine: "images/film40.jpg",
-                video: ""
-            },
-
-            {
-                id: 41,
-                nume: "Film 41",
-                tip: "film",
-                categorie: "Comedie",
-                gen: "Comedie",
-                an: "2026",
-                imagine: "images/film41.jpg",
-                video: ""
-            },
-
-            {
-                id: 42,
-                nume: "Film 42",
-                tip: "film",
-                categorie: "Horror",
-                gen: "Horror",
-                an: "2026",
-                imagine: "images/film42.jpg",
-                video: ""
-            },
-
-            {
-                id: 43,
-                nume: "Film 43",
-                tip: "film",
-                categorie: "SF",
-                gen: "SF",
-                an: "2026",
-                imagine: "images/film43.jpg",
-                video: ""
-            },
-
-            {
-                id: 44,
-                nume: "Film 44",
-                tip: "film",
-                categorie: "Drama",
-                gen: "Dramă",
-                an: "2026",
-                imagine: "images/film44.jpg",
-                video: ""
-            },
-
-            {
-                id: 45,
-                nume: "Film 45",
-                tip: "film",
-                categorie: "Romantic",
-                gen: "Romantic",
-                an: "2026",
-                imagine: "images/film45.jpg",
-                video: ""
-            },
-
-            {
-                id: 46,
-                nume: "Film 46",
-                tip: "film",
-                categorie: "Actiune",
-                gen: "Acțiune",
-                an: "2026",
-                imagine: "images/film46.jpg",
-                video: ""
-            },
-
-            {
-                id: 47,
-                nume: "Film 47",
-                tip: "film",
-                categorie: "Aventura",
-                gen: "Aventură",
-                an: "2026",
-                imagine: "images/film47.jpg",
-                video: ""
-            },
-
-            {
-                id: 48,
-                nume: "Film 48",
-                tip: "film",
-                categorie: "Comedie",
-                gen: "Comedie",
-                an: "2026",
-                imagine: "images/film48.jpg",
-                video: ""
-            },
-
-            {
-                id: 49,
-                nume: "Film 49",
-                tip: "film",
-                categorie: "Horror",
-                gen: "Horror",
-                an: "2026",
-                imagine: "images/film49.jpg",
-                video: ""
-            },
-
-            {
-                id: 50,
-                nume: "Film 50",
-                tip: "film",
-                categorie: "SF",
-                gen: "SF",
-                an: "2026",
-                imagine: "images/film50.jpg",
-                video: ""
-            },
-
-            {
-                id: 51,
-                nume: "Film 51",
-                tip: "film",
-                categorie: "Actiune",
-                gen: "Acțiune",
-                an: "2026",
-                imagine: "images/film51.jpg",
-                video: ""
-            },
-
-
-            /* =====================
-               EXEMPLU DESEN
-            ===================== */
-
-            {
-                id: 52,
-                nume: "Desen exemplu",
-                tip: "desen",
-                categorie: "Comedie",
-                gen: "Comedie",
-                an: "2026",
-                imagine: "images/film52.jpg",
-                video: ""
-            },
-
-
-            /* =====================
-               EXEMPLU ANIME
-            ===================== */
-
-            {
-                id: 53,
-                nume: "Anime exemplu",
-                tip: "anime",
-                categorie: "Actiune",
-                gen: "Acțiune",
-                an: "2026",
-                imagine: "images/film53.jpg",
-                video: ""
-            }
-
-        ];
-
-
-        /* =========================
-           CREARE CARD
-        ========================= */
-
-        function creeazaCard(item) {
-
-            const card =
-                document.createElement("div");
-
-            card.className = "card";
-
-            card.innerHTML = `
-
-                <img
-                    src="${item.imagine}"
-                    alt="${item.nume}"
-                    onerror="this.style.display='none'"
-                >
-
-                <h3>
-                    ${item.nume}
-                </h3>
-
-                <p>
-                    ${item.gen} • ${item.an}
-                </p>
-
-                <button
-                    type="button"
-                    onclick="openMovie('${item.video}')">
-
-                    ▶ Vizionează
-
-                </button>
-            `;
-
-            return card;
-        }
-
-
-        /* =========================
-           AFIȘARE CONȚINUT
-        ========================= */
-
-        function afiseazaContinut() {
-
-            const filmeGrid =
-                document.getElementById(
-                    "filmeGrid"
-                );
-
-            const deseneGrid =
-                document.getElementById(
-                    "deseneGrid"
-                );
-
-            const animeGrid =
-                document.getElementById(
-                    "animeGrid"
-                );
-
-            filmeGrid.innerHTML = "";
-            deseneGrid.innerHTML = "";
-            animeGrid.innerHTML = "";
-
-            continut.forEach(function(item) {
-
-                const card =
-                    creeazaCard(item);
-
-                if (item.tip === "film") {
-
-                    filmeGrid.appendChild(card);
-
-                }
-
-                else if (item.tip === "desen") {
-
-                    deseneGrid.appendChild(card);
-
-                }
-
-                else if (item.tip === "anime") {
-
-                    animeGrid.appendChild(card);
-
-                }
-
-            });
-        }
-
-
-        /* =========================
-           FILTRARE CATEGORII
-        ========================= */
-
-        function filtreaza(categorie) {
-
-            const filmeGrid =
-                document.getElementById(
-                    "filmeGrid"
-                );
-
-            filmeGrid.innerHTML = "";
-
-            const filme =
-                continut.filter(function(item) {
-
-                    if (item.tip !== "film") {
-                        return false;
-                    }
-
-                    if (categorie === "toate") {
-                        return true;
-                    }
-
-                    return item.categorie === categorie;
-                });
-
-            filme.forEach(function(item) {
-
-                filmeGrid.appendChild(
-                    creeazaCard(item)
-                );
-
-            });
-
-            document
-                .querySelectorAll(".filtru-btn")
-                .forEach(function(btn) {
-
-                    btn.classList.remove("activ");
-
-                });
-
-            event.target.classList.add("activ");
-        }
-
-
-        /* =========================
-           CATEGORIE DIN PAGINA
-        ========================= */
-
-        function filtreazaSiDeschide(categorie) {
-
-            showPage("filme");
-
-            setTimeout(function() {
-
-                filtreazaDirect(categorie);
-
-            }, 100);
-
-        }
-
-
-        function filtreazaDirect(categorie) {
-
-            const filmeGrid =
-                document.getElementById(
-                    "filmeGrid"
-                );
-
-            filmeGrid.innerHTML = "";
-
-            const filme =
-                continut.filter(function(item) {
-
-                    return (
-                        item.tip === "film" &&
-                        item.categorie === categorie
-                    );
-
-                });
-
-            filme.forEach(function(item) {
-
-                filmeGrid.appendChild(
-                    creeazaCard(item)
-                );
-
-            });
-        }
-
-
-        /* =========================
-           SEARCH BAR
-        ========================= */
-
-        const searchInput =
-            document.getElementById(
-                "searchInput"
-            );
-
-        searchInput.addEventListener(
-            "input",
-            function() {
-
-                const text =
-                    searchInput.value
-                        .toLowerCase()
-                        .trim();
-
-                if (text === "") {
-
-                    document
-                        .getElementById("searchInfo")
-                        .textContent = "";
-
-                    document
-                        .getElementById("noResults")
-                        .style.display = "none";
-
-                    return;
-                }
-
-                const rezultate =
-                    continut.filter(function(item) {
-
-                        return (
-                            item.nume
-                                .toLowerCase()
-                                .includes(text)
-
-                            ||
-
-                            item.gen
-                                .toLowerCase()
-                                .includes(text)
-
-                            ||
-
-                            item.categorie
-                                .toLowerCase()
-                                .includes(text)
-                        );
-
-                    afiseazaRezultateCautare(
-                        rezultate
-                    );
-
-            }
-        );
-
-
-        function afiseazaRezultateCautare(
-            rezultate
-        ) {
-
-            showPage("filme");
-
-            const grid =
-                document.getElementById(
-                    "filmeGrid"
-                );
-
-            const info =
-                document.getElementById(
-                    "searchInfo"
-                );
-
-            const noResults =
-                document.getElementById(
-                    "noResults"
-                );
-
-            grid.innerHTML = "";
-
-            info.textContent =
-                rezultate.length +
-                " rezultat(e) găsit(e)";
-
-            if (rezultate.length === 0) {
-
-                noResults.style.display =
-                    "block";
-
-                return;
-            }
-
-            noResults.style.display =
-                "none";
-
-            rezultate.forEach(function(item) {
-
-                grid.appendChild(
-                    creeazaCard(item)
-                );
-
-            });
-        }
-
-
-        /* =========================
-           PLAYER
-        ========================= */
-
-        function openMovie(videoLink) {
-
-            const player =
-                document.getElementById(
-                    "player"
-                );
-
-            const video =
-                document.getElementById(
-                    "video"
-                );
-
-            if (!videoLink) {
-
-                alert(
-                    "Acest film nu are încă un link MixDrop."
-                );
-
-                return;
-            }
-
-            video.pause();
-
-            video.innerHTML = "";
-
-            /*
-                MixDrop nu este fișier MP4 direct.
-                Pentru linkurile MixDrop folosim iframe.
-            */
-
-            const iframe =
-                document.createElement(
-                    "iframe"
-                );
-
-            iframe.src =
-                videoLink;
-
-            iframe.width = "100%";
-            iframe.height = "600";
-
-            iframe.frameBorder = "0";
-
-            iframe.allowFullscreen = true;
-
-            iframe.allow =
-                "autoplay; fullscreen";
-
-            iframe.style.borderRadius =
-                "10px";
-
-            iframe.style.background =
-                "black";
-
-            video.style.display = "none";
-
-            const playerBox =
-                document.querySelector(
-                    ".player-box"
-                );
-
-            playerBox.appendChild(
-                iframe
-            );
-
-            player.style.display =
-                "flex";
-        }
-
-
-        /* =========================
-           ÎNCHIDE PLAYER
-        ========================= */
-
-        function closeMovie() {
-
-            const player =
-                document.getElementById(
-                    "player"
-                );
-
-            const video =
-                document.getElementById(
-                    "video"
-                );
-
-            const iframe =
-                document.querySelector(
-                    ".player-box iframe"
-                );
-
-            if (iframe) {
-                iframe.remove();
-            }
-
-            video.pause();
-
-            video.style.display =
-                "block";
-
-            video.innerHTML = "";
-
-            player.style.display =
-                "none";
-        }
-
-
-        /* =========================
-           ESC
-        ========================= */
-
-        document.addEventListener(
-            "keydown",
-            function(event) {
-
-                if (event.key === "Escape") {
-
-                    closeMovie();
-
-                }
-
-            }
-        );
-
-
-        /* =========================
-           PORNEȘTE SITE-UL
-        ========================= */
-
-        afiseazaContinut();
-
-    </script>
+<!-- PLAYER -->
+
+<div id="player">
+
+<div class="player-box">
+
+<button
+type="button"
+class="close"
+onclick="closeMovie()">
+✕
+</button>
+
+<iframe
+id="playerFrame"
+class="player-frame"
+allow="autoplay; fullscreen"
+allowfullscreen>
+</iframe>
+
+</div>
+
+</div>
+
+<script>
+
+/* =========================
+   DATE FILME
+========================= */
+
+const continut = [
+
+{
+id:1,
+nume:"A Bronx Tale",
+tip:"film",
+categorie:"Drama",
+gen:"Drama, Crime",
+an:"1993",
+imagine:"images/film1.jpg",
+video:"https://mixdrop.top/e/nl0r1lr8h807wk"
+},
+
+{
+id:2,
+nume:"Mai furios, mai iute",
+tip:"film",
+categorie:"Aventura",
+gen:"Aventură",
+an:"2026",
+imagine:"images/film2.jpg",
+video:"https://mixdrop.top/e/wlnrkwvjt6we3x"
+},
+
+{
+id:3,
+nume:"Film 3",
+tip:"film",
+categorie:"Actiune",
+gen:"Acțiune",
+an:"2026",
+imagine:"images/film3.jpg",
+video:""
+},
+
+{
+id:4,
+nume:"Film 4",
+tip:"film",
+categorie:"Comedie",
+gen:"Comedie",
+an:"2026",
+imagine:"images/film4.jpg",
+video:""
+},
+
+{
+id:5,
+nume:"Film 5",
+tip:"film",
+categorie:"Horror",
+gen:"Horror",
+an:"2026",
+imagine:"images/film5.jpg",
+video:""
+},
+
+{
+id:6,
+nume:"Film 6",
+tip:"film",
+categorie:"Aventura",
+gen:"Aventură",
+an:"2026",
+imagine:"images/film6.jpg",
+video:""
+},
+
+{
+id:7,
+nume:"Film 7",
+tip:"film",
+categorie:"Actiune",
+gen:"Acțiune",
+an:"2026",
+imagine:"images/film7.jpg",
+video:""
+},
+
+{
+id:8,
+nume:"Film 8",
+tip:"film",
+categorie:"Comedie",
+gen:"Comedie",
+an:"2026",
+imagine:"images/film8.jpg",
+video:""
+},
+
+{
+id:9,
+nume:"Film 9",
+tip:"film",
+categorie:"Horror",
+gen:"Horror",
+an:"2026",
+imagine:"images/film9.jpg",
+video:""
+},
+
+{
+id:10,
+nume:"Film 10",
+tip:"film",
+categorie:"SF",
+gen:"SF",
+an:"2026",
+imagine:"images/film10.jpg",
+video:""
+},
+
+{
+id:11,
+nume:"Film 11",
+tip:"film",
+categorie:"Drama",
+gen:"Dramă",
+an:"2026",
+imagine:"images/film11.jpg",
+video:""
+},
+
+{
+id:12,
+nume:"Film 12",
+tip:"film",
+categorie:"Romantic",
+gen:"Romantic",
+an:"2026",
+imagine:"images/film12.jpg",
+video:""
+},
+
+{
+id:13,
+nume:"Film 13",
+tip:"film",
+categorie:"Actiune",
+gen:"Acțiune",
+an:"2026",
+imagine:"images/film13.jpg",
+video:""
+},
+
+{
+id:14,
+nume:"Film 14",
+tip:"film",
+categorie:"Aventura",
+gen:"Aventură",
+an:"2026",
+imagine:"images/film14.jpg",
+video:""
+},
+
+{
+id:15,
+nume:"Film 15",
+tip:"film",
+categorie:"Comedie",
+gen:"Comedie",
+an:"2026",
+imagine:"images/film15.jpg",
+video:""
+},
+
+{
+id:16,
+nume:"Film 16",
+tip:"film",
+categorie:"Horror",
+gen:"Horror",
+an:"2026",
+imagine:"images/film16.jpg",
+video:""
+},
+
+{
+id:17,
+nume:"Film 17",
+tip:"film",
+categorie:"SF",
+gen:"SF",
+an:"2026",
+imagine:"images/film17.jpg",
+video:""
+},
+
+{
+id:18,
+nume:"Film 18",
+tip:"film",
+categorie:"Drama",
+gen:"Dramă",
+an:"2026",
+imagine:"images/film18.jpg",
+video:""
+},
+
+{
+id:19,
+nume:"Film 19",
+tip:"film",
+categorie:"Actiune",
+gen:"Acțiune",
+an:"2026",
+imagine:"images/film19.jpg",
+video:""
+},
+
+{
+id:20,
+nume:"Film 20",
+tip:"film",
+categorie:"Aventura",
+gen:"Aventură",
+an:"2026",
+imagine:"images/film20.jpg",
+video:""
+},
+
+{
+id:21,
+nume:"Film 21",
+tip:"film",
+categorie:"Comedie",
+gen:"Comedie",
+an:"2026",
+imagine:"images/film21.jpg",
+video:""
+},
+
+{
+id:22,
+nume:"Film 22",
+tip:"film",
+categorie:"Horror",
+gen:"Horror",
+an:"2026",
+imagine:"images/film22.jpg",
+video:""
+},
+
+{
+id:23,
+nume:"Film 23",
+tip:"film",
+categorie:"SF",
+gen:"SF",
+an:"2026",
+imagine:"images/film23.jpg",
+video:""
+},
+
+{
+id:24,
+nume:"Film 24",
+tip:"film",
+categorie:"Drama",
+gen:"Dramă",
+an:"2026",
+imagine:"images/film24.jpg",
+video:""
+},
+
+{
+id:25,
+nume:"Film 25",
+tip:"film",
+categorie:"Romantic",
+gen:"Romantic",
+an:"2026",
+imagine:"images/film25.jpg",
+video:""
+},
+
+{
+id:26,
+nume:"Film 26",
+tip:"film",
+categorie:"Actiune",
+gen:"Acțiune",
+an:"2026",
+imagine:"images/film26.jpg",
+video:""
+},
+
+{
+id:27,
+nume:"Film 27",
+tip:"film",
+categorie:"Aventura",
+gen:"Aventură",
+an:"2026",
+imagine:"images/film27.jpg",
+video:""
+},
+
+{
+id:28,
+nume:"Film 28",
+tip:"film",
+categorie:"Comedie",
+gen:"Comedie",
+an:"2026",
+imagine:"images/film28.jpg",
+video:""
+},
+
+{
+id:29,
+nume:"Film 29",
+tip:"film",
+categorie:"Horror",
+gen:"Horror",
+an:"2026",
+imagine:"images/film29.jpg",
+video:""
+},
+
+{
+id:30,
+nume:"Film 30",
+tip:"film",
+categorie:"SF",
+gen:"SF",
+an:"2026",
+imagine:"images/film30.jpg",
+video:""
+},
+
+{
+id:31,
+nume:"Film 31",
+tip:"film",
+categorie:"Drama",
+gen:"Dramă",
+an:"2026",
+imagine:"images/film31.jpg",
+video:""
+},
+
+{
+id:32,
+nume:"Film 32",
+tip:"film",
+categorie:"Actiune",
+gen:"Acțiune",
+an:"2026",
+imagine:"images/film32.jpg",
+video:""
+},
+
+{
+id:33,
+nume:"Film 33",
+tip:"film",
+categorie:"Aventura",
+gen:"Aventură",
+an:"2026",
+imagine:"images/film33.jpg",
+video:""
+},
+
+{
+id:34,
+nume:"Film 34",
+tip:"film",
+categorie:"Comedie",
+gen:"Comedie",
+an:"2026",
+imagine:"images/film34.jpg",
+video:""
+},
+
+{
+id:35,
+nume:"Film 35",
+tip:"film",
+categorie:"Horror",
+gen:"Horror",
+an:"2026",
+imagine:"images/film35.jpg",
+video:""
+},
+
+{
+id:36,
+nume:"Film 36",
+tip:"film",
+categorie:"SF",
+gen:"SF",
+an:"2026",
+imagine:"images/film36.jpg",
+video:""
+},
+
+{
+id:37,
+nume:"Film 37",
+tip:"film",
+categorie:"Drama",
+gen:"Dramă",
+an:"2026",
+imagine:"images/film37.jpg",
+video:""
+},
+
+{
+id:38,
+nume:"Film 38",
+tip:"film",
+categorie:"Romantic",
+gen:"Romantic",
+an:"2026",
+imagine:"images/film38.jpg",
+video:""
+},
+
+{
+id:39,
+nume:"Film 39",
+tip:"film",
+categorie:"Actiune",
+gen:"Acțiune",
+an:"2026",
+imagine:"images/film39.jpg",
+video:""
+},
+
+{
+id:40,
+nume:"Film 40",
+tip:"film",
+categorie:"Aventura",
+gen:"Aventură",
+an:"2026",
+imagine:"images/film40.jpg",
+video:""
+},
+
+{
+id:41,
+nume:"Film 41",
+tip:"film",
+categorie:"Comedie",
+gen:"Comedie",
+an:"2026",
+imagine:"images/film41.jpg",
+video:""
+},
+
+{
+id:42,
+nume:"Film 42",
+tip:"film",
+categorie:"Horror",
+gen:"Horror",
+an:"2026",
+imagine:"images/film42.jpg",
+video:""
+},
+
+{
+id:43,
+nume:"Film 43",
+tip:"film",
+categorie:"SF",
+gen:"SF",
+an:"2026",
+imagine:"images/film43.jpg",
+video:""
+},
+
+{
+id:44,
+nume:"Film 44",
+tip:"film",
+categorie:"Drama",
+gen:"Dramă",
+an:"2026",
+imagine:"images/film44.jpg",
+video:""
+},
+
+{
+id:45,
+nume:"Film 45",
+tip:"film",
+categorie:"Romantic",
+gen:"Romantic",
+an:"2026",
+imagine:"images/film45.jpg",
+video:""
+},
+
+{
+id:46,
+nume:"Film 46",
+tip:"film",
+categorie:"Actiune",
+gen:"Acțiune",
+an:"2026",
+imagine:"images/film46.jpg",
+video:""
+},
+
+{
+id:47,
+nume:"Film 47",
+tip:"film",
+categorie:"Aventura",
+gen:"Aventură",
+an:"2026",
+imagine:"images/film47.jpg",
+video:""
+},
+
+{
+id:48,
+nume:"Film 48",
+tip:"film",
+categorie:"Comedie",
+gen:"Comedie",
+an:"2026",
+imagine:"images/film48.jpg",
+video:""
+},
+
+{
+id:49,
+nume:"Film 49",
+tip:"film",
+categorie:"Horror",
+gen:"Horror",
+an:"2026",
+imagine:"images/film49.jpg",
+video:""
+},
+
+{
+id:50,
+nume:"Film 50",
+tip:"film",
+categorie:"SF",
+gen:"SF",
+an:"2026",
+imagine:"images/film50.jpg",
+video:""
+},
+
+{
+id:51,
+nume:"Film 51",
+tip:"film",
+categorie:"Actiune",
+gen:"Acțiune",
+an:"2026",
+imagine:"images/film51.jpg",
+video:""
+},
+
+/* DESEN */
+
+{
+id:52,
+nume:"Desen exemplu",
+tip:"desen",
+categorie:"Comedie",
+gen:"Comedie",
+an:"2026",
+imagine:"images/film52.jpg",
+video:""
+},
+
+/* ANIME */
+
+{
+id:53,
+nume:"Anime exemplu",
+tip:"anime",
+categorie:"Actiune",
+gen:"Acțiune",
+an:"2026",
+imagine:"images/film53.jpg",
+video:""
+}
+
+];
+
+
+/* =========================
+   CARD
+========================= */
+
+function creeazaCard(item){
+
+const card=document.createElement("div");
+
+card.className="card";
+
+const img=document.createElement("img");
+img.src=item.imagine;
+img.alt=item.nume;
+
+img.onerror=function(){
+    this.style.display="none";
+};
+
+const h3=document.createElement("h3");
+h3.textContent=item.nume;
+
+const p=document.createElement("p");
+p.textContent=item.gen+" • "+item.an;
+
+const button=document.createElement("button");
+
+button.type="button";
+button.textContent="▶ Vizionează";
+
+button.onclick=function(){
+    openMovie(item.video);
+};
+
+card.appendChild(img);
+card.appendChild(h3);
+card.appendChild(p);
+card.appendChild(button);
+
+return card;
+}
+
+
+/* =========================
+   AFISARE
+========================= */
+
+function afiseazaContinut(){
+
+const filmeGrid=document.getElementById("filmeGrid");
+const deseneGrid=document.getElementById("deseneGrid");
+const animeGrid=document.getElementById("animeGrid");
+
+filmeGrid.innerHTML="";
+deseneGrid.innerHTML="";
+animeGrid.innerHTML="";
+
+continut.forEach(function(item){
+
+const card=creeazaCard(item);
+
+if(item.tip==="film"){
+    filmeGrid.appendChild(card);
+}
+
+if(item.tip==="desen"){
+    deseneGrid.appendChild(card);
+}
+
+if(item.tip==="anime"){
+    animeGrid.appendChild(card);
+}
+
+});
+
+}
+
+
+/* =========================
+   PAGINI
+========================= */
+
+function showPage(pageId){
+
+document.querySelectorAll(".sectiune")
+.forEach(function(page){
+    page.classList.remove("activa");
+});
+
+const page=document.getElementById(pageId);
+
+if(page){
+    page.classList.add("activa");
+}
+
+window.scrollTo({
+    top:0,
+    behavior:"smooth"
+});
+
+}
+
+
+/* =========================
+   FILTRARE
+========================= */
+
+function filtreaza(categorie,buton){
+
+const grid=document.getElementById("filmeGrid");
+
+grid.innerHTML="";
+
+continut
+.filter(function(item){
+
+if(item.tip!=="film"){
+    return false;
+}
+
+if(categorie==="toate"){
+    return true;
+}
+
+return item.categorie===categorie;
+
+})
+.forEach(function(item){
+
+grid.appendChild(
+    creeazaCard(item)
+);
+
+});
+
+
+document.querySelectorAll(".filtru-btn")
+.forEach(function(btn){
+    btn.classList.remove("activ");
+});
+
+if(buton){
+    buton.classList.add("activ");
+}
+
+document.getElementById("searchInfo").textContent="";
+document.getElementById("noResults").style.display="none";
+
+}
+
+
+/* =========================
+   CATEGORII
+========================= */
+
+function filtreazaSiDeschide(categorie){
+
+showPage("filme");
+
+filtreazaDirect(categorie);
+
+}
+
+
+function filtreazaDirect(categorie){
+
+const grid=document.getElementById("filmeGrid");
+
+grid.innerHTML="";
+
+const rezultate=continut.filter(function(item){
+
+return item.tip==="film" &&
+       item.categorie===categorie;
+
+});
+
+rezultate.forEach(function(item){
+
+grid.appendChild(
+    creeazaCard(item)
+);
+
+});
+
+document.querySelectorAll(".filtru-btn")
+.forEach(function(btn){
+
+btn.classList.remove("activ");
+
+});
+
+document.querySelectorAll(".filtru-btn")
+.forEach(function(btn){
+
+if(btn.textContent.includes(
+    categorie==="Actiune" ? "Acțiune" :
+    categorie==="Aventura" ? "Aventură" :
+    categorie==="Comedie" ? "Comedie" :
+    categorie==="Horror" ? "Horror" :
+    categorie==="Romantic" ? "Romantic" :
+    categorie==="SF" ? "SF" :
+    categorie==="Drama" ? "Dramă" :
+    categorie==="Crime" ? "Crime" :
+    ""
+)){
+    btn.classList.add("activ");
+}
+
+});
+
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+document.getElementById("searchInput")
+.addEventListener("input",function(){
+
+const text=this.value
+.toLowerCase()
+.trim();
+
+if(text===""){
+
+document.getElementById("searchInfo")
+.textContent="";
+
+document.getElementById("noResults")
+.style.display="none";
+
+afiseazaContinut();
+
+return;
+}
+
+const rezultate=continut.filter(function(item){
+
+return item.nume
+.toLowerCase()
+.includes(text)
+
+||
+
+item.gen
+.toLowerCase()
+.includes(text)
+
+||
+
+item.categorie
+.toLowerCase()
+.includes(text);
+
+});
+
+afiseazaRezultateCautare(rezultate);
+
+});
+
+
+function afiseazaRezultateCautare(rezultate){
+
+showPage("filme");
+
+const grid=document.getElementById("filmeGrid");
+const info=document.getElementById("searchInfo");
+const noResults=document.getElementById("noResults");
+
+grid.innerHTML="";
+
+info.textContent=
+rezultate.length+
+" rezultat(e) găsit(e)";
+
+if(rezultate.length===0){
+
+noResults.style.display="block";
+
+return;
+
+}
+
+noResults.style.display="none";
+
+rezultate.forEach(function(item){
+
+grid.appendChild(
+    creeazaCard(item)
+);
+
+});
+
+}
+
+
+/* =========================
+   PLAYER
+========================= */
+
+function openMovie(videoLink){
+
+if(!videoLink){
+
+alert(
+"Acest titlu nu are încă un videoclip."
+);
+
+return;
+
+}
+
+const player=document.getElementById("player");
+const frame=document.getElementById("playerFrame");
+
+frame.src=videoLink;
+
+player.style.display="flex";
+
+document.body.style.overflow="hidden";
+
+}
+
+
+/* =========================
+   INCHIDE PLAYER
+========================= */
+
+function closeMovie(){
+
+const player=document.getElementById("player");
+const frame=document.getElementById("playerFrame");
+
+frame.src="";
+
+player.style.display="none";
+
+document.body.style.overflow="";
+
+}
+
+
+/* =========================
+   ESC
+========================= */
+
+document.addEventListener(
+"keydown",
+function(event){
+
+if(event.key==="Escape"){
+    closeMovie();
+}
+
+});
+
+
+/* =========================
+   PORNIRE
+========================= */
+
+afiseazaContinut();
+
+</script>
 
 </body>
 </html>
+```
