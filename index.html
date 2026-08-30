@@ -448,16 +448,13 @@ footer {
     </div>
 </main>
 
-<!-- CINEMA MODE PLAYER OVERLAY -->
 <div id="player">
     <div class="player-box">
         <button id="close">✕</button>
         <h2 id="playerTitle">Titlu</h2>
         
-        <!-- Cadrul Video Principal -->
         <div class="video-wrapper" id="videoArea"></div>
 
-        <!-- Control Bar & Navigare Episoade -->
         <div class="player-controls-bar">
             <div class="nav-ep-group" id="epNavButtons" style="display: none;">
                 <button class="nav-ep-btn" id="btnPrevEp" onclick="schimbaEpisodRelativ(-1)">
@@ -493,28 +490,17 @@ footer {
 const LISTA_FILME = [
     {
         id: 1,
-        nume: "Abronx tale",
-        imagine: "images/film1.jpg",
+        nume: "A Bronx Tale",
+        imagine: "https://m.media-amazon.com/images/M/MV5BMTM2NzA2MDM1N15BMl5BanBnXkFtZTcwNTg3ODI0MQ@@._V1_FMjpg_UX1000_.jpg",
         video: "https://mixdrop.top/e/nl0r1lr8h807wk"
     },
     {
         id: 2,
         nume: "2 Fast 2 Furious",
-        imagine: "images/film2.jpg",
+        imagine: "https://m.media-amazon.com/images/M/MV5BMzExYjcyYTYtNDU1Mi00NmGQLTgxNTktM2I1MzI3NjhhM2U1XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_FMjpg_UX1000_.jpg",
         video: "https://mixdrop.top/e/wlnrkwvjt6we3x"
-    },
-    {
-         id: 3,
-        nume: "Snow White – Alba ca Zapada (2025)",
-        imagine: "images/film2.jpg",
-       video:https://mixdrop.top/e/7kr69704so834r   
-    },
-    {
-         id: 4,
-        nume: "Child’s Play 2 – Jucăria 2 (1990),
-        imagine: "images/film2.jpg",
-        video:https:
-    
+    }
+];
 
 /* =========================================================
    2. CONFIGURARE SERIALE (ID 51 -> 100)
@@ -522,17 +508,11 @@ const LISTA_FILME = [
 const LISTA_SERIALE = [
     {
         id: 51,
-        nume: "inazuma eleven ",
-        imagine: "images/gutierrez.jpg",
+        nume: "My Name is Gutierrez (2026)",
+        imagine: "https://m.media-amazon.com/images/M/MV5BNTBmNWFlM2QtN2YxMS00OTI3LWJkYTMtYTAyMGU1YzI0Yzg3XkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_FMjpg_UX1000_.jpg",
         episoade: [
-            "https://mixdrop.top/e/jd9g9876a77remd",
-            "https://mixdrop.top/e/nl0r06jwu7xvp0",
-            "https://mixdrop.top/e/elnjn8qruxxev9",
-            "https://link-ep4.com",
-            "https://link-ep5.com",
-            "https://link-ep6.com",
-            "https://link-ep7.com",
-            "https://link-ep8.com"
+            "https://mixdrop.top/e/nl0r1lr8h807wk",
+            "https://mixdrop.top/e/wlnrkwvjt6we3x"
         ]
     }
 ];
@@ -544,10 +524,9 @@ const LISTA_ANIME = [
     {
         id: 101,
         nume: "Anime Exemplu 1",
-        imagine: "images/anime1.jpg",
+        imagine: "https://m.media-amazon.com/images/M/MV5BODcwNWE3OTMtMDc3MS00NDFjLWE1OTAtNDU3NjgxODMxY2UyXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_FMjpg_UX1000_.jpg",
         episoade: [
-            "https://link-anime-ep1.com",
-            "https://link-anime-ep2.com"
+            "https://mixdrop.top/e/nl0r1lr8h807wk"
         ]
     }
 ];
@@ -560,7 +539,7 @@ for (let i = 1; i <= 50; i++) {
     continut.push(existent || {
         id: i,
         nume: `Film ${i}`,
-        imagine: `images/film${i}.jpg`,
+        imagine: "https://via.placeholder.com/300x450/141414/888888?text=Poster+Lipsa",
         video: ""
     });
 }
@@ -578,7 +557,7 @@ for (let i = 1; i <= 50; i++) {
     continut.push({
         id: id,
         nume: existent ? existent.nume : `Serial ${i}`,
-        imagine: existent ? existent.imagine : `images/serial${i}.jpg`,
+        imagine: existent ? existent.imagine : "https://via.placeholder.com/300x450/141414/888888?text=Poster+Lipsa",
         episoade: epList
     });
 }
@@ -596,7 +575,7 @@ for (let i = 1; i <= 60; i++) {
     continut.push({
         id: id,
         nume: existent ? existent.nume : `Anime ${i}`,
-        imagine: existent ? existent.imagine : `images/anime${i}.jpg`,
+        imagine: existent ? existent.imagine : "https://via.placeholder.com/300x450/141414/888888?text=Poster+Lipsa",
         episoade: epList
     });
 }
@@ -730,14 +709,12 @@ function selecteazaEpisod(index) {
     playerTitle.textContent = `${itemCurent.nume} - Episodul ${ep.nr}`;
     incarcaSursaVideo(ep.url);
 
-    // Actualizează butoanele din grilă
     const epButtons = document.querySelectorAll(".ep-btn");
     epButtons.forEach((b, idx) => {
         if (idx === index) b.classList.add("active");
         else b.classList.remove("active");
     });
 
-    // Actualizează starea butoanelor Next / Prev
     btnPrevEp.disabled = (index === 0);
     btnNextEp.disabled = (index === itemCurent.episoade.length - 1);
 }
@@ -760,75 +737,3 @@ function deschidePlayer(item) {
         incarcaSursaVideo(item.video);
     } else {
         epNavButtons.style.display = "inline-flex";
-        episodesArea.style.display = "block";
-
-        const h3 = document.createElement("h3");
-        h3.textContent = "Selectează Episodul:";
-        
-        const epGrid = document.createElement("div");
-        epGrid.className = "episodes-grid";
-
-        item.episoade.forEach((ep, index) => {
-            const epBtn = document.createElement("button");
-            epBtn.className = "ep-btn";
-            epBtn.textContent = `Ep. ${ep.nr}`;
-            epBtn.onclick = () => selecteazaEpisod(index);
-            epGrid.appendChild(epBtn);
-        });
-
-        episodesArea.appendChild(h3);
-        episodesArea.appendChild(epGrid);
-
-        selecteazaEpisod(0);
-    }
-
-    player.classList.add("open");
-    document.body.style.overflow = "hidden";
-}
-
-function inchidePlayer() {
-    player.classList.remove("open");
-    videoArea.innerHTML = "";
-    episodesArea.innerHTML = "";
-    document.body.style.overflow = "auto";
-}
-
-/* FUNCȚIE PENTRU FULLSCREEN FORȚAT */
-function toggleFullScreen() {
-    const elem = document.getElementById("videoArea");
-    if (!document.fullscreenElement) {
-        if (elem.requestFullscreen) {
-            elem.requestFullscreen();
-        } else if (elem.webkitRequestFullscreen) { /* Safari */
-            elem.webkitRequestFullscreen();
-        } else if (elem.msRequestFullscreen) { /* IE11 */
-            elem.msRequestFullscreen();
-        }
-    } else {
-        if (document.exitFullscreen) {
-            document.exitFullscreen();
-        }
-    }
-}
-
-close.onclick = inchidePlayer;
-
-player.onclick = (e) => {
-    if (e.target === player) inchidePlayer();
-};
-
-search.oninput = afiseaza;
-
-categoryButtons.forEach(btn => {
-    btn.onclick = () => {
-        categoryButtons.forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-        categoriaActuala = btn.dataset.category;
-        afiseaza();
-    };
-});
-
-afiseaza();
-</script>
-</body>
-</html>
