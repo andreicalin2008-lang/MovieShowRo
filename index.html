@@ -285,7 +285,6 @@ main {
     display: block;
 }
 
-/* Control Bar, Fullscreen & Next/Prev Episode Buttons */
 .player-controls-bar {
     display: flex;
     justify-content: space-between;
@@ -346,7 +345,6 @@ main {
     box-shadow: 0 6px 20px rgba(229, 9, 20, 0.5);
 }
 
-/* EPISODES SELECTOR */
 .episodes-container {
     margin-top: 20px;
     padding-top: 15px;
@@ -484,32 +482,28 @@ footer {
 </footer>
 
 <script>
-/* =========================================================
-   1. CONFIGURARE FILME (ID 1 -> 50)
-========================================================= */
+const DEFAULT_POSTER = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='450' viewBox='0 0 300 450'><rect width='100%' height='100%' fill='%23141414'/><text x='50%' y='50%' font-family='Arial' font-size='18' fill='%23666666' text-anchor='middle'>MovieShowRo</text></svg>";
+
 const LISTA_FILME = [
     {
         id: 1,
         nume: "A Bronx Tale",
-        imagine: "https://m.media-amazon.com/images/M/MV5BMTM2NzA2MDM1N15BMl5BanBnXkFtZTcwNTg3ODI0MQ@@._V1_FMjpg_UX1000_.jpg",
+        imagine: DEFAULT_POSTER,
         video: "https://mixdrop.top/e/nl0r1lr8h807wk"
     },
     {
         id: 2,
         nume: "2 Fast 2 Furious",
-        imagine: "https://m.media-amazon.com/images/M/MV5BMzExYjcyYTYtNDU1Mi00NmGQLTgxNTktM2I1MzI3NjhhM2U1XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_FMjpg_UX1000_.jpg",
+        imagine: DEFAULT_POSTER,
         video: "https://mixdrop.top/e/wlnrkwvjt6we3x"
     }
 ];
 
-/* =========================================================
-   2. CONFIGURARE SERIALE (ID 51 -> 100)
-========================================================= */
 const LISTA_SERIALE = [
     {
         id: 51,
-        nume: "My Name is Gutierrez (2026)",
-        imagine: "https://m.media-amazon.com/images/M/MV5BNTBmNWFlM2QtN2YxMS00OTI3LWJkYTMtYTAyMGU1YzI0Yzg3XkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_FMjpg_UX1000_.jpg",
+        nume: "Inazuma Eleven",
+        imagine: DEFAULT_POSTER,
         episoade: [
             "https://mixdrop.top/e/nl0r1lr8h807wk",
             "https://mixdrop.top/e/wlnrkwvjt6we3x"
@@ -517,21 +511,8 @@ const LISTA_SERIALE = [
     }
 ];
 
-/* =========================================================
-   3. CONFIGURARE ANIME (ID 101 -> 160)
-========================================================= */
-const LISTA_ANIME = [
-    {
-        id: 101,
-        nume: "Anime Exemplu 1",
-        imagine: "https://m.media-amazon.com/images/M/MV5BODcwNWE3OTMtMDc3MS00NDFjLWE1OTAtNDU3NjgxODMxY2UyXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_FMjpg_UX1000_.jpg",
-        episoade: [
-            "https://mixdrop.top/e/nl0r1lr8h807wk"
-        ]
-    }
-];
+const LISTA_ANIME = [];
 
-/* GENERARE AUTOMATĂ STRUCTURĂ DATE */
 const continut = [];
 
 for (let i = 1; i <= 50; i++) {
@@ -539,7 +520,7 @@ for (let i = 1; i <= 50; i++) {
     continut.push(existent || {
         id: i,
         nume: `Film ${i}`,
-        imagine: "https://via.placeholder.com/300x450/141414/888888?text=Poster+Lipsa",
+        imagine: DEFAULT_POSTER,
         video: ""
     });
 }
@@ -547,17 +528,15 @@ for (let i = 1; i <= 50; i++) {
 for (let i = 1; i <= 50; i++) {
     const id = 50 + i;
     const existent = LISTA_SERIALE.find(s => s.id === id);
-    
     let epList = [];
     for (let ep = 1; ep <= 12; ep++) {
         const url = (existent && existent.episoade && existent.episoade[ep - 1]) ? existent.episoade[ep - 1] : "";
         epList.push({ nr: ep, url: url });
     }
-
     continut.push({
         id: id,
         nume: existent ? existent.nume : `Serial ${i}`,
-        imagine: existent ? existent.imagine : "https://via.placeholder.com/300x450/141414/888888?text=Poster+Lipsa",
+        imagine: existent ? existent.imagine : DEFAULT_POSTER,
         episoade: epList
     });
 }
@@ -565,22 +544,19 @@ for (let i = 1; i <= 50; i++) {
 for (let i = 1; i <= 60; i++) {
     const id = 100 + i;
     const existent = LISTA_ANIME.find(a => a.id === id);
-    
     let epList = [];
     for (let ep = 1; ep <= 12; ep++) {
         const url = (existent && existent.episoade && existent.episoade[ep - 1]) ? existent.episoade[ep - 1] : "";
         epList.push({ nr: ep, url: url });
     }
-
     continut.push({
         id: id,
         nume: existent ? existent.nume : `Anime ${i}`,
-        imagine: existent ? existent.imagine : "https://via.placeholder.com/300x450/141414/888888?text=Poster+Lipsa",
+        imagine: existent ? existent.imagine : DEFAULT_POSTER,
         episoade: epList
     });
 }
 
-/* LOGICĂ INTERFAȚĂ & PLAYER */
 const grid = document.getElementById("grid");
 const search = document.getElementById("search");
 const count = document.getElementById("count");
@@ -737,3 +713,74 @@ function deschidePlayer(item) {
         incarcaSursaVideo(item.video);
     } else {
         epNavButtons.style.display = "inline-flex";
+        episodesArea.style.display = "block";
+
+        const h3 = document.createElement("h3");
+        h3.textContent = "Selectează Episodul:";
+        
+        const epGrid = document.createElement("div");
+        epGrid.className = "episodes-grid";
+
+        item.episoade.forEach((ep, index) => {
+            const epBtn = document.createElement("button");
+            epBtn.className = "ep-btn";
+            epBtn.textContent = `Ep. ${ep.nr}`;
+            epBtn.onclick = () => selecteazaEpisod(index);
+            epGrid.appendChild(epBtn);
+        });
+
+        episodesArea.appendChild(h3);
+        episodesArea.appendChild(epGrid);
+
+        selecteazaEpisod(0);
+    }
+
+    player.classList.add("open");
+    document.body.style.overflow = "hidden";
+}
+
+function inchidePlayer() {
+    player.classList.remove("open");
+    videoArea.innerHTML = "";
+    episodesArea.innerHTML = "";
+    document.body.style.overflow = "auto";
+}
+
+function toggleFullScreen() {
+    const elem = document.getElementById("videoArea");
+    if (!document.fullscreenElement) {
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+        } else if (elem.webkitRequestFullscreen) {
+            elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) {
+            elem.msRequestFullscreen();
+        }
+    } else {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        }
+    }
+}
+
+close.onclick = inchidePlayer;
+
+player.onclick = (e) => {
+    if (e.target === player) inchidePlayer();
+};
+
+search.oninput = afiseaza;
+
+categoryButtons.forEach(btn => {
+    btn.onclick = () => {
+        categoryButtons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        categoriaActuala = btn.dataset.category;
+        afiseaza();
+    };
+});
+
+afiseaza();
+</script>
+</body>
+</html>
