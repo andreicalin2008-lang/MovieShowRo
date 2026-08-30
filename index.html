@@ -278,35 +278,59 @@ main {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
 }
 
-.video-wrapper video {
-    width: 100%;
-    height: 100%;
-    display: block;
-}
-
-.video-wrapper iframe {
+.video-wrapper video, .video-wrapper iframe {
     width: 100%;
     height: 100%;
     border: none;
     display: block;
 }
 
-/* Control & Fullscreen Bar */
+/* Control Bar, Fullscreen & Next/Prev Episode Buttons */
 .player-controls-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 15px;
-    gap: 15px;
+    gap: 10px;
     flex-wrap: wrap;
+}
+
+.nav-ep-group {
+    display: flex;
+    gap: 8px;
+}
+
+.nav-ep-btn {
+    background: #22242d;
+    color: white;
+    border: 1px solid #333645;
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: 0.2s;
+}
+
+.nav-ep-btn:hover:not(:disabled) {
+    background: #333645;
+    border-color: #4e5269;
+}
+
+.nav-ep-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
 }
 
 .fs-button {
     background: linear-gradient(135deg, #e50914 0%, #b20710 100%);
     color: white;
     border: none;
-    padding: 12px 22px;
-    font-size: 14px;
+    padding: 11px 20px;
+    font-size: 13px;
     font-weight: bold;
     border-radius: 8px;
     cursor: pointer;
@@ -383,6 +407,8 @@ footer {
     #player { padding: 10px; }
     .player-box { padding: 15px; }
     .player-controls-bar { flex-direction: column; align-items: stretch; }
+    .nav-ep-group { width: 100%; justify-content: space-between; }
+    .nav-ep-btn { flex: 1; justify-content: center; }
     .fs-button { width: 100%; justify-content: center; }
 }
 </style>
@@ -405,7 +431,7 @@ footer {
 
 <section class="hero">
     <h1>MovieShowRo</h1>
-    <p>🎬 50 Filme • 📺 50 Seriale (12 Ep) • 🍥 60 Anime (12 Ep)</p>
+    <p>🎬 50 Filme • 📺 50 Seriale • 🍥 60 Anime</p>
 </section>
 
 <main>
@@ -431,14 +457,22 @@ footer {
         <!-- Cadrul Video Principal -->
         <div class="video-wrapper" id="videoArea"></div>
 
-        <!-- Control Bar & Fullscreen Button -->
+        <!-- Control Bar & Navigare Episoade -->
         <div class="player-controls-bar">
-            <span style="color:#aaa; font-size:13px;">💡 Apasă pe buton pentru a extinde clipul pe tot ecranul:</span>
+            <div class="nav-ep-group" id="epNavButtons" style="display: none;">
+                <button class="nav-ep-btn" id="btnPrevEp" onclick="schimbaEpisodRelativ(-1)">
+                    ⏮️ Ep. Anterior
+                </button>
+                <button class="nav-ep-btn" id="btnNextEp" onclick="schimbaEpisodRelativ(1)">
+                    Ep. Următor ⏭️
+                </button>
+            </div>
+
             <button class="fs-button" onclick="toggleFullScreen()">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
                 </svg>
-                📺 Ecran Complet (Forțat)
+                📺 Ecran Complet
             </button>
         </div>
 
@@ -468,18 +502,6 @@ const LISTA_FILME = [
         nume: "2 Fast 2 Furious",
         imagine: "images/film2.jpg",
         video: "https://mixdrop.top/e/wlnrkwvjt6we3x"
-    },
-    {
-        id: 3,
-        nume: "Snow White (2025)",
-        imagine: "images/film3.jpg",
-        video: "https://link-film-3.com"
-    },
-    {
-        id: 4,
-        nume: "Child's Play 2",
-        imagine: "images/film4.jpg",
-        video: "https://link-film-4.com"
     }
 ];
 
@@ -489,12 +511,17 @@ const LISTA_FILME = [
 const LISTA_SERIALE = [
     {
         id: 51,
-        nume: "Serialul Exemplu 1",
-        imagine: "images/serial1.jpg",
+        nume: "My Name is Gutierrez (2026)",
+        imagine: "images/gutierrez.jpg",
         episoade: [
-            "https://link-ep1.com",
-            "https://link-ep2.com",
-            "https://link-ep3.com"
+            "https://mixdrop.top/e/nl0r1lr8h807wk",
+            "https://mixdrop.top/e/wlnrkwvjt6we3x",
+            "https://link-ep3.com",
+            "https://link-ep4.com",
+            "https://link-ep5.com",
+            "https://link-ep6.com",
+            "https://link-ep7.com",
+            "https://link-ep8.com"
         ]
     }
 ];
@@ -519,16 +546,12 @@ const continut = [];
 
 for (let i = 1; i <= 50; i++) {
     const existent = LISTA_FILME.find(f => f.id === i);
-    if (existent) {
-        continut.push(existent);
-    } else {
-        continut.push({
-            id: i,
-            nume: `Film ${i}`,
-            imagine: `images/film${i}.jpg`,
-            video: ""
-        });
-    }
+    continut.push(existent || {
+        id: i,
+        nume: `Film ${i}`,
+        imagine: `images/film${i}.jpg`,
+        video: ""
+    });
 }
 
 for (let i = 1; i <= 50; i++) {
@@ -580,7 +603,13 @@ const episodesArea = document.getElementById("episodesArea");
 const close = document.getElementById("close");
 const categoryButtons = document.querySelectorAll("nav button");
 
+const epNavButtons = document.getElementById("epNavButtons");
+const btnPrevEp = document.getElementById("btnPrevEp");
+const btnNextEp = document.getElementById("btnNextEp");
+
 let categoriaActuala = "toate";
+let itemCurent = null;
+let episodCurentIndex = 0;
 
 function categorie(item) {
     if (item.id <= 50) return "filme";
@@ -681,15 +710,47 @@ function incarcaSursaVideo(url) {
     }
 }
 
+function selecteazaEpisod(index) {
+    if (!itemCurent || !itemCurent.episoade) return;
+    
+    episodCurentIndex = index;
+    const ep = itemCurent.episoade[index];
+    
+    playerTitle.textContent = `${itemCurent.nume} - Episodul ${ep.nr}`;
+    incarcaSursaVideo(ep.url);
+
+    // Actualizează butoanele din grilă
+    const epButtons = document.querySelectorAll(".ep-btn");
+    epButtons.forEach((b, idx) => {
+        if (idx === index) b.classList.add("active");
+        else b.classList.remove("active");
+    });
+
+    // Actualizează starea butoanelor Next / Prev
+    btnPrevEp.disabled = (index === 0);
+    btnNextEp.disabled = (index === itemCurent.episoade.length - 1);
+}
+
+function schimbaEpisodRelativ(directie) {
+    const noulIndex = episodCurentIndex + directie;
+    if (noulIndex >= 0 && noulIndex < itemCurent.episoade.length) {
+        selecteazaEpisod(noulIndex);
+    }
+}
+
 function deschidePlayer(item) {
-    playerTitle.textContent = item.nume;
+    itemCurent = item;
     episodesArea.innerHTML = "";
 
     if (categorie(item) === "filme") {
+        epNavButtons.style.display = "none";
         episodesArea.style.display = "none";
+        playerTitle.textContent = item.nume;
         incarcaSursaVideo(item.video);
     } else {
+        epNavButtons.style.display = "inline-flex";
         episodesArea.style.display = "block";
+
         const h3 = document.createElement("h3");
         h3.textContent = "Selectează Episodul:";
         
@@ -699,20 +760,15 @@ function deschidePlayer(item) {
         item.episoade.forEach((ep, index) => {
             const epBtn = document.createElement("button");
             epBtn.className = "ep-btn";
-            if (index === 0) epBtn.classList.add("active");
             epBtn.textContent = `Ep. ${ep.nr}`;
-            epBtn.onclick = () => {
-                document.querySelectorAll(".ep-btn").forEach(b => b.classList.remove("active"));
-                epBtn.classList.add("active");
-                incarcaSursaVideo(ep.url);
-            };
+            epBtn.onclick = () => selecteazaEpisod(index);
             epGrid.appendChild(epBtn);
         });
 
         episodesArea.appendChild(h3);
         episodesArea.appendChild(epGrid);
-        
-        incarcaSursaVideo(item.episoade[0].url);
+
+        selecteazaEpisod(0);
     }
 
     player.classList.add("open");
