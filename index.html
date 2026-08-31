@@ -578,18 +578,17 @@ const LISTA_ANIME = [
             "https://mixdrop.top/e/elnjqr73hnqq0j",
             "https://mixdrop.top/e/xwo671pohlm0z81",
             "https://mixdrop.top/e/nl0rj84puljkd4o",
-            "https://mixdrop.top/e/vknrd13jtkoro4",
+            "https://mixdrop.top/e/vknrd13jtkoro4"
         ]
-    
     }, 
     {
         id: 102, 
         nume: "Tokyo Ghoul", 
-        imagine: "URL_IMAGINE_POSTER", // 
+        imagine: DEFAULT_POSTER, 
         episoade: [
             "https://mixdrop.top/e/xwo6kd33avv1ql",
             "https://mixdrop.top/e/7kr6vmvvuvm4ld",
-            "https://mixdrop.top/e/wlnr7v79h3q0eq"
+            "https://mixdrop.top/e/wlnr7v79h3q0eq", // Virgulă adăugată aici
             "https://mixdrop.top/e/gjnxwqwvuerzzn",
             "https://mixdrop.top/e/r6w4rrdkb44xd3",
             "https://mixdrop.top/e/9wn0rjj0h71qjk",
@@ -598,9 +597,7 @@ const LISTA_ANIME = [
             "https://mixdrop.top/e/nl0rqzpmfzgzw0",
             "https://mixdrop.top/e/gjnxw7gwswm1lvv", 
             "https://mixdrop.top/e/r6w4r8w8tkojz0",
-            "https://mixdrop.top/e/l76rm1npho7ep3",
-           
-            
+            "https://mixdrop.top/e/l76rm1npho7ep3"
         ]
     }
 ];
@@ -720,7 +717,7 @@ function afiseaza() {
     }
 }
 
-function deschidePlayer(id) {
+window.deschidePlayer = function(id) {
     itemCurent = continut.find(x => x.id === id);
     if (!itemCurent) return;
 
@@ -728,12 +725,10 @@ function deschidePlayer(id) {
     episodCurentIndex = 0;
 
     if (itemCurent.video !== undefined) {
-        // Este film
         epNavButtons.style.display = "none";
         episodesArea.style.display = "none";
         incarcaVideo(itemCurent.video);
     } else {
-        // Este serial sau anime
         epNavButtons.style.display = "flex";
         episodesArea.style.display = "block";
         genereazaListaEpisoade();
@@ -741,7 +736,7 @@ function deschidePlayer(id) {
     }
 
     player.classList.add("open");
-}
+};
 
 function incarcaVideo(url) {
     if (url) {
@@ -778,14 +773,14 @@ function incarcaEpisod(index) {
     btnNextEp.disabled = index === itemCurent.episoade.length - 1;
 }
 
-function schimbaEpisodRelativ(directie) {
+window.schimbaEpisodRelativ = function(directie) {
     const noulIndex = episodCurentIndex + directie;
     if (itemCurent && itemCurent.episoade && noulIndex >= 0 && noulIndex < itemCurent.episoade.length) {
         incarcaEpisod(noulIndex);
     }
-}
+};
 
-function toggleFullScreen() {
+window.toggleFullScreen = function() {
     if (!document.fullscreenElement) {
         videoArea.requestFullscreen().catch(err => {
             alert(`Eroare la activarea ecranului complet: ${err.message}`);
@@ -793,7 +788,7 @@ function toggleFullScreen() {
     } else {
         document.exitFullscreen();
     }
-}
+};
 
 close.onclick = () => {
     player.classList.remove("open");
