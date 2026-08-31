@@ -672,4 +672,126 @@ function afiseaza() {
     const rezultate = continut.filter(item => {
         const cat = categorie(item);
         const categorieOK = categoriaActuala === "toate" || cat === categoriaActuala;
-        const cautareOK = item.n
+        const cautareOK = item.nume.toLowerCase().includes(text);
+        return categorieOK && cautareOK;
+    });
+
+    count.textContent = `${rezultate.length} titluri`;
+
+    if (rezultate.length === 0) {
+        noResults.style.display = "block";
+    } else {
+        noResults.style.display = "none";
+        rezultate.forEach(item => {
+            const card = document.createElement("div");
+            card.className = "card";
+            card.innerHTML = `
+                <img class="poster" src="${item.imagine}" alt="${item.nume}">
+                <div class="info">
+                    <div class="title" title="${item.nume}">${item.nume}</div>
+                    <div class="category">${numeCategorie(categorie(item))}</div>
+                    <button class="watch" onclick="deschidePlayer(${item.id})">Vezi Acum</button>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+    }
+}
+
+function deschidePlayer(id) {
+    itemCurent = continut.find(x => x.id === id);
+    if (!itemCurent) return;
+
+    playerTitle.textContent = itemCurent.nume;
+    episodCurentIndex = 0;
+
+    if (itemCurent.video !== undefined) {
+        // Este film
+        epNavButtons.style.display = "none";
+        episodesArea.style.display = "none";
+        incarcaVideo(itemCurent.video);
+    } else {
+        // Este serial sau anime
+        epNavButtons.style.display = "flex";
+        episodesArea.style.display = "block";
+        genereazaListaEpisoade();
+        incarcaEpisod(0);
+    }
+
+    player.classList.add("open");
+}
+
+function incarcaVideo(url) {
+    if (url) {
+        videoArea.innerHTML = `<iframe src="${url}" allowfullscreen scrolling="no"></iframe>`;
+    } else {
+        videoArea.innerHTML = `<div style="display:flex;justify-content:center;align-items:center;height:100%;color:#888;">Video indisponibil momentan.</div>`;
+    }
+}
+
+function genereazaListaEpisoade() {
+    episodesArea.innerHTML = "<h3>Episoade:</h3><div class='episodes-grid'></div>";
+    const epGrid = episodesArea.querySelector(".episodes-grid");
+
+    itemCurent.episoade.forEach((ep, index) => {
+        const btn = document.createElement("button");
+        btn.className = `ep-btn ${index === 0 ? 'active' : ''}`;
+        btn.textContent = `Ep. ${ep.nr}`;
+        btn.onclick = () => incarcaEpisod(index);
+        epGrid.appendChild(btn);
+    });
+}
+
+function incarcaEpisod(index) {
+    episodCurentIndex = index;
+    const ep = itemCurent.episoade[index];
+    incarcaVideo(ep ? ep.url : "");
+
+    const toateButoanele = episodesArea.querySelectorAll(".ep-btn");
+    toateButoanele.forEach((b, i) => {
+        b.classList.toggle("active", i === index);
+    });
+
+    btnPrevEp.disabled = index === 0;
+    btnNextEp.disabled = index === itemCurent.episoade.length - 1;
+}
+
+function schimbaEpisodRelativ(directie) {
+    const noulIndex = episodCurentIndex + directie;
+    if (itemCurent && itemCurent.episoade && noulIndex >= 0 && noulIndex < itemCurent.episoade.length) {
+        incarcaEpisod(noulIndex);
+    }
+}
+
+function toggleFullScreen() {
+    if (!document.fullscreenElement) {
+        videoArea.requestFullscreen().catch(err => {
+            alert(`Eroare la activarea ecranului complet: ${err.message}`);
+        });
+    } else {
+        document.exitFullscreen();
+    }
+}
+
+close.onclick = () => {
+    player.classList.remove("open");
+    videoArea.innerHTML = "";
+};
+
+search.oninput = afiseaza;
+
+categoryButtons.forEach(btn => {
+    btn.onclick = () => {
+        categoryButtons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        categoriaActuala = btn.dataset.category;
+        sectionTitle.textContent = btn.textContent.replace(/^[^\s]+\s*/, '');
+        afiseaza();
+    };
+});
+
+// Inițializare prima afișare
+afiseaza();
+</script>
+</body>
+</html>
