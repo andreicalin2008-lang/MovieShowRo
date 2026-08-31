@@ -502,7 +502,6 @@ const LISTA_FILME = [
         nume: "Snow White – Alba ca Zapada (2025)",
         imagine: DEFAULT_POSTER,
         video: "https://mixdrop.top/e/7kr69704so834r"
-      
     },
     {
         id: 4,
@@ -529,12 +528,46 @@ const LISTA_SERIALE = [
             "https://mixdrop.top/e/k0nr380otrq3z1",
             "https://mixdrop.top/e/ow7r3q7vhl03gox",
             "https://mixdrop.top/e/7kr68wkru49p0q",
+            "https://mixdrop.top/e/36nx87nqb68rk9",  
             "https://mixdrop.top/e/l76r3j7ebwqg4x",
-           ]
+            "https://mixdrop.top/e/elnjn8qruxxev9",
+            "https://mixdrop.top/e/z1p0rxo0ugr0wl6",
+            "https://mixdrop.top/e/z1p0rxpdcggkpvv",
+            "https://mixdrop.top/e/nl0r4617czjj6x",
+            "https://mixdrop.top/e/q1lrq8v6ukzdrz",
+            "https://mixdrop.top/e/jd9gm8zwa99weq",
+            "https://mixdrop.top/e/1nvj81ooh4nkx3",
+            "https://mixdrop.top/e/dkqwlxroh7mp1vp",
+            "https://mixdrop.top/e/9wn08pqnh3qdznl",
+            "https://mixdrop.top/e/4dnz8kvrin9z7n",
+            "https://mixdrop.top/e/1nvj81o3bk317o",
+            "https://mixdrop.top/e/jd9gm8kkb8xqn",
+            "https://mixdrop.top/e/gjnx6mxvidod0v",
+        ]
     }
 ];
 
-const LISTA_ANIME = [];
+const LISTA_ANIME = [
+    {
+        id: 101,
+        nume: "Fairy Tail",
+        imagine: DEFAULT_POSTER,
+        episoade: [
+            "https://mixdrop.top/e/z19xe6g1a3xoed",
+            "https://mixdrop.top/e/09x8or4zuaex64",
+            "https://mixdrop.top/e/en8dk166uwo4en",
+            "https://mixdrop.top/e/679m16rjt3vqn1",
+            "https://mixdrop.top/e/pk3qek0oa83jdp",
+            "https://mixdrop.top/e/jdqgqo61s9g890",
+            "https://mixdrop.top/e/gq1418g3s43zo0",
+            "https://mixdrop.top/e/7kr68wo1ug69o7",
+            "https://mixdrop.top/e/814gok03b9jrw3",
+            "https://mixdrop.top/e/l76r3j4mtp1vw6",
+            "https://mixdrop.top/e/09x8orvdclvx7d",
+            "https://mixdrop.top/e/v6pnr67mt6enjv"
+        ]
+    }
+];
 
 const continut = [];
 
@@ -548,11 +581,16 @@ for (let i = 1; i <= 50; i++) {
     });
 }
 
+// Generare Seriale (Dinamic în funcție de numărul de link-uri adăugate)
 for (let i = 1; i <= 50; i++) {
     const id = 50 + i;
     const existent = LISTA_SERIALE.find(s => s.id === id);
     let epList = [];
-    for (let ep = 1; ep <= 12; ep++) {
+    
+    // Calculează câte episoade sunt în total (minim 12)
+    const numarEpisoade = (existent && existent.episoade) ? Math.max(existent.episoade.length, 12) : 12;
+
+    for (let ep = 1; ep <= numarEpisoade; ep++) {
         const url = (existent && existent.episoade && existent.episoade[ep - 1]) ? existent.episoade[ep - 1] : "";
         epList.push({ nr: ep, url: url });
     }
@@ -564,11 +602,16 @@ for (let i = 1; i <= 50; i++) {
     });
 }
 
+// Generare Anime (Dinamic în funcție de numărul de link-uri adăugate)
 for (let i = 1; i <= 60; i++) {
     const id = 100 + i;
     const existent = LISTA_ANIME.find(a => a.id === id);
     let epList = [];
-    for (let ep = 1; ep <= 12; ep++) {
+    
+    // Calculează câte episoade sunt în total (minim 12)
+    const numarEpisoade = (existent && existent.episoade) ? Math.max(existent.episoade.length, 12) : 12;
+
+    for (let ep = 1; ep <= numarEpisoade; ep++) {
         const url = (existent && existent.episoade && existent.episoade[ep - 1]) ? existent.episoade[ep - 1] : "";
         epList.push({ nr: ep, url: url });
     }
