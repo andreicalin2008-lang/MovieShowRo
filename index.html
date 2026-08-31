@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MovieShowRo</title>
 
+<!-- Font Awesome pentru pictograme -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 <style>
 /* ==============================
    RESET & BASE STYLES
@@ -456,18 +459,15 @@ footer {
         <div class="player-controls-bar">
             <div class="nav-ep-group" id="epNavButtons" style="display: none;">
                 <button class="nav-ep-btn" id="btnPrevEp" onclick="schimbaEpisodRelativ(-1)">
-                    ⏮️ Ep. Anterior
+                    <i class="fa-solid fa-backward-step"></i> Ep. Anterior
                 </button>
                 <button class="nav-ep-btn" id="btnNextEp" onclick="schimbaEpisodRelativ(1)">
-                    Ep. Următor ⏭️
+                    Ep. Următor <i class="fa-solid fa-forward-step"></i>
                 </button>
             </div>
 
             <button class="fs-button" onclick="toggleFullScreen()">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
-                </svg>
-                📺 Ecran Complet
+                <i class="fa-solid fa-expand"></i> Ecran Complet
             </button>
         </div>
 
@@ -550,21 +550,33 @@ const LISTA_SERIALE = [
 const LISTA_ANIME = [
     {
         id: 101,
-        nume: "Fairy Tail",
+        nume: "Dororo",
         imagine: DEFAULT_POSTER,
         episoade: [
-            "https://mixdrop.top/e/z19xe6g1a3xoed",
-            "https://mixdrop.top/e/09x8or4zuaex64",
-            "https://mixdrop.top/e/en8dk166uwo4en",
-            "https://mixdrop.top/e/679m16rjt3vqn1",
-            "https://mixdrop.top/e/pk3qek0oa83jdp",
-            "https://mixdrop.top/e/jdqgqo61s9g890",
-            "https://mixdrop.top/e/gq1418g3s43zo0",
-            "https://mixdrop.top/e/7kr68wo1ug69o7",
-            "https://mixdrop.top/e/814gok03b9jrw3",
-            "https://mixdrop.top/e/l76r3j4mtp1vw6",
-            "https://mixdrop.top/e/09x8orvdclvx7d",
-            "https://mixdrop.top/e/v6pnr67mt6enjv"
+            "https://mixdrop.top/e/03vwwk4xbk7goxg",
+            "https://mixdrop.top/e/9wn009k6b3zjplw",
+            "https://mixdrop.top/e/l76rrxezcz4039",
+            "https://mixdrop.top/e/wlnrr1d9imnkke",
+            "https://mixdrop.top/e/elnjjo1wu9rjp7",
+            "https://mixdrop.top/e/nl0rr31ga0qez9",
+            "https://mixdrop.top/e/jd9gglgqa9l0xz",
+            "https://mixdrop.top/e/q1lrr4lkixxngm4",
+            "https://mixdrop.top/e/jd9ggl1eul019k",
+            "https://mixdrop.top/e/mkdrrmeoix6pwv9",
+            "https://mixdrop.top/e/q1lrr43wtx86jx7",
+            "https://mixdrop.top/e/ow7rrvjeixk8v3",
+            "https://mixdrop.top/e/ow7rrv67t9wk6x",
+            "https://mixdrop.top/e/67qggnk0u93gvq",
+            "https://mixdrop.top/e/r6w44e73ip4m3x",
+            "https://mixdrop.top/e/8l4dx9rgu666r00",
+            "https://mixdrop.top/e/z1p0l9xvu6mvl4",
+            "https://mixdrop.top/e/4dnzlo9osk4rre",
+            "https://mixdrop.top/e/mkdrwj1xix6xzr",
+            "https://mixdrop.top/e/gjnx6mknf8p89z",
+            "https://mixdrop.top/e/elnjqr73hnqq0j",
+            "https://mixdrop.top/e/xwo671pohlm0z81",
+            "https://mixdrop.top/e/nl0rj84puljkd4o",
+            "https://mixdrop.top/e/vknrd13jtkoro4",
         ]
     }
 ];
@@ -834,6 +846,12 @@ close.onclick = inchidePlayer;
 player.onclick = (e) => {
     if (e.target === player) inchidePlayer();
 };
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && player.classList.contains('open')) {
+        inchidePlayer();
+    }
+});
 
 search.oninput = afiseaza;
 
